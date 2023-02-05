@@ -1,5 +1,14 @@
 <script lang="ts" setup>
   import PageCard from '@/components/home/PageCard.vue';
+  import homeCardsData from '../settings/homeCardsData.json';
+  
+  interface CardType {
+    title: string;
+    icon: string;
+    description: string;
+  }
+
+  const cardList: CardType[] = homeCardsData;
 </script>
 
 <template>
@@ -14,11 +23,13 @@
   </div>
 
   <v-row class="cards mx-auto justify-space-around">
-    <PageCard 
-      title="About"
-      icon="mdi-account-circle"
-      description="Aboutページは、私に関する情報を書いているページです。氏名や生年月日、所属・経歴、取得しているスキルなどが書かれています。あと、自分の写真も…笑"
-    />
+    <div v-for="(card, i) in cardList" :key="i">
+      <PageCard 
+        :title=card.title
+        :icon=card.icon
+        :description=card.description
+      />
+    </div>
   </v-row>
 </template>
 

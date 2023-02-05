@@ -1,0 +1,12 @@
+[
+  {
+    "title": "About",
+    "icon": "mdi-account-circle",
+    "description": "Aboutページは、私に関する情報を書いているページです。氏名や生年月日、所属・経歴、取得しているスキルなどが書かれています。あと、自分の写真も…笑"
+  },
+  {
+    "title": "Works",
+    "icon": "mdi-monitor-cellphone",
+    "description": "Worksページは、私の今まで行ってきた研究に関するページです。学会発表を行った私が主著・共著の研究を紹介しています。論文へのリンクもあるので是非ご覧ください。"
+  }
+]
