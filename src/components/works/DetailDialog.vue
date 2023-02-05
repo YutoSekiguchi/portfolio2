@@ -1,6 +1,7 @@
 <script lang="ts" setup>
   import { WorksType } from '@/settings/worksType';
   import { defineProps, computed, ComputedRef } from 'vue';
+  import ArticleImage from './ArticleImage.vue';
   
   export interface Props {
     isDialog: boolean;
@@ -45,13 +46,12 @@
         
         <v-main class="card-main">
           <p class="text-center text-h6 font-weight-bold pt-2 px-5 mb-3">{{ work.title }}</p>
-          <v-img
-            contain
-            width="500"
-            height="300"
-            :src="`../src/assets/works/${work.image}.png`"
-            class="mx-auto mb-6"
+
+          <ArticleImage
+            :path="`works/${work.image}.png`"
+            class="mb-6"
           />
+          
           <p class="font-weight-bold text-h5 ml-4">Abstract</p>
           <p class="description">{{ work.description }}</p>
 

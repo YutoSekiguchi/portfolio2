@@ -1,6 +1,7 @@
 <script lang="ts" setup>
   import PageTitle from '@/components/common/PageTitle.vue';
   import DetailDialog from '@/components/works/DetailDialog.vue';
+  import ArticleImage from '@/components/works/ArticleImage.vue';
   import Works from '../settings/works.json';
   import { WorksType } from '@/settings/worksType';
   import { ref } from 'vue';
@@ -38,12 +39,8 @@
         </v-card-item>
         <v-row class="mb-3">
           <v-col cols="6" class="card-left">
-            <v-img
-              contain
-              width="500"
-              height="300"
-              :src="`../src/assets/works/${work.image}.png`"
-              class="mx-auto"
+            <ArticleImage
+              :path="`works/${work.image}.png`"
             />
           </v-col>
 
