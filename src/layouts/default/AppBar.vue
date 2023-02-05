@@ -2,11 +2,28 @@
   import { useRouter } from "vue-router";
 
   const router = useRouter();
-  const icons: string[] = [
-    "mdi-twitter",
-    "mdi-instagram",
-    "mdi-github",
+  type Icons = {
+    name: string,
+    link: string,
+  }
+  const icons: Icons[] = [
+    {
+      name: "mdi-twitter",
+      link: "https://twitter.com/yuto_2611",
+    },
+    {
+      name: "mdi-instagram",
+      link: "https://www.instagram.com/mendyy1126/"
+    },
+    {
+      name: "mdi-github",
+      link: "https://github.com/YutoSekiguchi"
+    }
   ];
+  const moveLink = (url: string) => {
+    window.open(url, '_blank');
+  }
+
   const title: string = "Yuto Sekiguchi";
   const tabNames = [
     "Home",
@@ -30,8 +47,16 @@
   >
     <v-col class="app-bar-elements mx-auto">
       <v-row class="pr-12 pt-5" justify="end">
-        <v-btn icon v-for="(iconName, index) in icons" :key="index">
-          <v-icon :icon=iconName class="icon" />
+        <v-btn
+          icon 
+          v-for="(icon, index) in icons"
+          :key="index"
+          @click="moveLink(icon.link)"
+        >
+          <v-icon 
+            :icon=icon.name
+            class="icon"
+          />
         </v-btn>
       </v-row>
       <h1>{{ title }}</h1>
