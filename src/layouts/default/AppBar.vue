@@ -19,7 +19,6 @@
     }
   )
 
-
   const router = useRouter();
   type Icons = {
     name: string,
