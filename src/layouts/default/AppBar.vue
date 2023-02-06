@@ -77,7 +77,7 @@
           />
         </v-btn>
       </v-row>
-      <h1>{{ title }}</h1>
+      <h1 @click="() => {router.push('/')}" class="title">{{ title }}</h1>
 
       <v-row class="pr-12 pt-6" justify="end">
         <div v-for="(name, index) in tabNames" :key="index">
@@ -96,14 +96,15 @@
   margin: 0 15px;
   color: #555;
 }
-
+.title {
+  cursor: pointer;
+}
 .tab {
   font-weight: bold;
   cursor: pointer;
   margin: 0 20px;
   color: #555;
 }
-
 .now {
   border-bottom: 3px solid rgba(255, 177, 9, 0.5);
   color: #5558;
