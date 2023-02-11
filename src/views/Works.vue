@@ -5,7 +5,9 @@
   import Works from '../settings/works.json';
   import { WorksType } from '@/settings/worksType';
   import { ref } from 'vue';
+  import { useWorksStore } from '@/store/works';
 
+  const worksStore = useWorksStore();
   const isDialog = ref<boolean>(false);
   const num = ref<number>(0);
 
@@ -29,6 +31,24 @@
   />
   <div class="main mx-auto">
     <PageTitle title="Works" class="main-title mx-auto" />
+    <v-col class="py-0">
+      <v-combobox
+        v-model="worksStore.searchTagList"
+        clearable
+        label="Search"
+        multiple
+        variant="underlined"
+        class="search-tag-bar mt-2 mx-auto"
+      >
+        <template v-slot:selection="data">
+          <v-chip
+            variant="outlined"
+            color="cyan"
+            class="mr-3"
+          >#&nbsp;{{ data.item.title }}</v-chip>
+        </template>
+      </v-combobox>
+    </v-col>
     <v-col v-for="(work, i) in worksList" :key="i">
       <v-card
         variant="flat"
@@ -82,7 +102,8 @@
                 class="mr-3"
                 v-for="(tag, index) in work.tagList"
                 :key="index"
-              ># {{ tag }}</v-chip>
+                @click="worksStore.changeTag(tag)"
+              >#&nbsp;{{ tag }}</v-chip>
             </v-col>
           </v-col> 
         </v-row>
@@ -123,5 +144,8 @@ p, .icon {
 .tags {
   overflow: auto;
   white-space:nowrap;
+}
+.search-tag-bar {
+  max-width: 600px;
 }
 </style>
