@@ -7,7 +7,7 @@
     "conference": "HCI-201 in 石垣島",
     "date": "2023/01/16",
     "url": "https://dl.nkmr-lab.org/papers/421",
-    "tagList": ["HCI", "B4", "手書き", "筆圧", "可視化", "Undo", "Redo"]
+    "tagList": ["HCI", "B4", "手書き", "筆圧", "Undo"]
   },
   {
     "title": "デジタルペンの筆圧による濃淡表現の有無が筆算の正答率に及ぼす影響",
@@ -17,7 +17,7 @@
     "conference": "HCGシンポジウム in 高松",
     "date": "2022/12/16",
     "url": "https://dl.nkmr-lab.org/papers/415",
-    "tagList": ["HCG", "B4", "手書き", "筆圧", "タブレット", "正答率"]
+    "tagList": ["HCG", "B4", "手書き", "筆圧"]
   },
   {
     "title": "選択インタフェースにおけるアイテムの遅延表示が選択に及ぼす影響",
@@ -27,7 +27,7 @@
     "conference": "HCI-200 in 淡路島",
     "date": "2022/11/09",
     "url": "https://dl.nkmr-lab.org/papers/409",
-    "tagList": ["HCI", "B4", "選択", "ダークパターン", "遅延表示", "インタフェース"]
+    "tagList": ["HCI", "B4", "選択", "ダークパターン"]
   },
   {
     "title": "TRing: 休憩によるやる気低下を防ぐ行動支援システムの提案",
@@ -37,7 +37,7 @@
     "conference": "GN-116 オンライン",
     "date": "2022/03/07",
     "url": "https://ipsj.ixsq.nii.ac.jp/ej/index.php?active_action=repository_view_main_item_detail&page_id=13&block_id=8&item_id=217379&item_no=1",
-    "tagList": ["GN", "B3", "システム", "休憩", "リング", "NFCリーダ"]
+    "tagList": ["GN", "B3", "休憩"]
   },
   {
     "title": "三択の選択肢における色要因が選択行動に及ぼす影響",
@@ -57,6 +57,6 @@
     "conference": "第6回コミック工学",
     "date": "2021/11/21",
     "url": "https://dl.nkmr-lab.org/papers/345",
-    "tagList": ["https://comiqa.com", "コミック工学", "漫画", "クイズ", "ハッカソン", "ネタバレ"]
+    "tagList": ["コミック工学", "漫画", "クイズ", "https://comiqa.com"]
   }
 ]
