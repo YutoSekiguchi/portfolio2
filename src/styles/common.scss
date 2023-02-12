@@ -1,0 +1,48 @@
+$default_color: #555;
+@mixin default_main {
+  max-width: 1000px;
+}
+@mixin default_big_text {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+p, .icon, .tab {
+  color: $default_color;
+}
+
+.page-title {
+  font-size: 3rem;
+  font-weight: lighter;
+}
+
+.app-bar-elements {
+  @include default_main();
+  $cursor: pointer;
+  .icon {
+    font-size: 1.8rem;
+    margin: 0 15px;
+  }
+  .title {
+    cursor: $cursor;
+  }
+  .tab {
+    font-weight: bold;
+    cursor: $cursor;
+    margin: 0 20px;
+  }
+  .now {
+    border-bottom: 3px solid rgba(255, 177, 9, 0.5);
+    color: #{$default_color}8;
+  }
+}
+
+.footer {
+  position: sticky;
+  top: 100vh;
+  min-height: 10vh;
+  p {
+    font-weight: bold;
+  }
+}
+

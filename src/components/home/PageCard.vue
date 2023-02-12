@@ -11,14 +11,14 @@
 
 <template>
   <v-card 
-    class="card"
+    class="page-card"
     variant="flat"
   >
     <p class="card-title text-center">{{ props.title }}</p>
     <v-col class="d-flex justify-center py-0">
       <v-icon
         :icon=props.icon
-        class="card-icon"
+        class="icon"
       />
     </v-col>
     <v-col class="card-description py-0">
@@ -26,24 +26,3 @@
     </v-col>
   </v-card>
 </template>
-
-<style scoped>
-p, .card-icon {
-  color: #555;
-}
-.card {
-  width: 280px;
-}
-.card-title{
-  font-size: 2rem;
-  font-weight: bold;
-}
-.card-icon {
-  font-size: 8rem;
-}
-.card-description {
-  font-size: 0.9rem;
-  height: 200px;
-  overflow-y: scroll;
-}
-</style>

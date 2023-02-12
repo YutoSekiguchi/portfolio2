@@ -36,7 +36,7 @@
 </script>
 
 <template>
-  <div class="main mx-auto">
+  <div class="about-main mx-auto">
     <PageTitle title="About" />
     <v-row class="container mt-6">
       <v-col cols="6" class="left-container" align-self="center">
@@ -63,23 +63,3 @@
     </v-row>
   </div>
 </template>
-
-<style scoped>
-.main {
-  max-width: 1000px;
-}
-p, .icon {
-  color: #555;
-}
-.me-img {
-  border-radius: 20px;
-}
-.element-header {
-  font-weight: bold;
-  font-size: 1.2rem;
-  border-bottom: solid 1px #555;
-}
-.element-body {
-  margin: 1rem;
-}
-</style>

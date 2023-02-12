@@ -8,12 +8,5 @@
 </script>
 
 <template>
-  <p class="title">{{ props.title }}</p>
+  <p class="page-title">{{ props.title }}</p>
 </template>
-
-<style scoped>
-.title {
-  font-size: 3rem;
-  font-weight: lighter;
-}
-</style>

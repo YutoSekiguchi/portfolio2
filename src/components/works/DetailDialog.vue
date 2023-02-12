@@ -25,7 +25,7 @@
   >
     <v-card
       variant="elevated"
-      class="card bg-white mx-auto"
+      class="dialog-card bg-white mx-auto"
     >
       <v-layout>
         <v-app-bar
@@ -45,7 +45,7 @@
           </template>
         </v-app-bar>
         
-        <v-main class="card-main">
+        <v-main class="dialog-card-main">
           <p class="text-center text-h6 font-weight-bold pt-2 px-5 mb-3">{{ work.title }}</p>
 
           <ArticleImage
@@ -73,27 +73,3 @@
     </v-card>
   </v-dialog>
 </template>
-
-<style scoped>
-p, .icon, .works {
-  color: #555;
-}
-.card {
-  max-width: 1000px;
-  max-height: 600px;
-}
-.card-main {
-  overflow: auto;
-}
-.description {
-  font-weight: bolder;
-  font-size: 0.9rem;
-  margin: 10px 20px;
-}
-.authors {
-  font-size: 0.9rem;
-}
-.tags {
-  white-space: wrap;
-}
-</style>

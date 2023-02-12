@@ -1,0 +1,33 @@
+@use 'common';
+
+.top {
+  background-color: #eeeeee;
+}
+.cards {
+  @include common.default_main(); 
+}
+.map {
+  @include common.default_main();
+  .el-title {
+    @include common.default_big_text();
+  }
+  .map-text {
+    line-height: 2em;
+  }
+}
+
+/* PageCard */
+.page-card {
+  width: 280px;
+  .card-title {
+    @include common.default_big_text();
+  }
+  .icon {
+    font-size: 8rem;
+  }
+  .card-description {
+    font-size: 0.9rem;
+    height: 200px;
+    overflow-y: scroll;
+  }
+}

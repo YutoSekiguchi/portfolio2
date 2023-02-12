@@ -1,0 +1,16 @@
+@use 'common';
+
+.about-main {
+  @include common.default_main();
+  .me-img {
+    border-radius: 20px;
+  }
+  .element-header {
+    font-weight: bold;
+    font-size: 1.2rem;
+    border-bottom: solid 1px #{common.$default_color};
+  }
+  .element-body {
+    margin: 1rem;
+  }
+}

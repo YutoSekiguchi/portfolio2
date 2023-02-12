@@ -1,1 +1,4 @@
-$default_color: #555;
+@use './common.scss';
+@use './home.scss';
+@use './about.scss';
+@use './works.scss';

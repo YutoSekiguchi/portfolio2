@@ -64,9 +64,6 @@
 .map {
   max-width: 1000px;
 }
-p {
-  color: #555;
-}
 .el-title {
   font-size: 2rem;
   font-weight: bold;

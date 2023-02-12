@@ -88,28 +88,3 @@
     </v-col>
   </v-app-bar>
 </template>
-
-
-<style scoped>
-.icon {
-  font-size: 1.8rem;
-  margin: 0 15px;
-  color: #555;
-}
-.title {
-  cursor: pointer;
-}
-.tab {
-  font-weight: bold;
-  cursor: pointer;
-  margin: 0 20px;
-  color: #555;
-}
-.now {
-  border-bottom: 3px solid rgba(255, 177, 9, 0.5);
-  color: #5558;
-}
-.app-bar-elements {
-  max-width: 1000px;
-}
-</style>

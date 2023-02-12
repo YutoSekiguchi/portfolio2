@@ -44,7 +44,7 @@
     })
     return shuffleArray(res);
   })
-  const inputedTag = ref<string[]>(worksStore.searchTagList);
+  const inputedTag = ref<string[]>([]);
 
   // 記事のタグクリック時の動作
   const clickTag = (tag: string) => {
@@ -69,8 +69,8 @@
     :close-dialog="closeDialog"
     :work="worksList[num]"
   />
-  <div class="main mx-auto">
-    <v-row class="main-header mx-auto">
+  <div class="works-main mx-auto">
+    <v-row class="works-main-header mx-auto">
       <PageTitle title="Works" />
       <v-col class="py-0">
         <v-autocomplete
@@ -152,41 +152,3 @@
     </v-col>
   </div>
 </template>
-
-<style scoped>
-.main {
-  max-width: 1200px;
-}
-.main-header {
-  max-width: 1000px;
-}
-.card {
-  padding-bottom: 30px;
-  border-bottom: dashed 1px #555;
-}
-p, .icon {
-  color: #555;
-}
-.description {
-  max-width: 500px;
-  font-weight: bolder;
-  font-size: 0.9rem;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 8;
-  overflow: hidden;
-}
-.wrap, .tags, .open-dialog {
-  max-width: 500px;
-}
-.authors, .conference, .date, .open-dialog {
-  font-size: 0.8rem;
-}
-.tags {
-  overflow: auto;
-  white-space:nowrap;
-}
-.search-tag-bar {
-  max-width: 400px;
-}
-</style>

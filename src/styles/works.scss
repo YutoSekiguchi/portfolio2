@@ -1,0 +1,59 @@
+@use 'common';
+
+@mixin card_right_width {
+  max-width: 500px;
+}
+
+.works-main {
+  max-width: 1200px;
+  .works-main-header {
+    @include common.default_main();
+    .search-tag-bar {
+      max-width: 400px;
+    }
+  }
+  .card {
+    padding-bottom: 30px;
+    border-bottom: dashed 1px #{common.$default_color};
+  }
+  .description, .wrap, .tags, .open-dialog {
+    @include card_right_width();
+  }
+  .description {
+    font-weight: bolder;
+    font-size: 0.9rem;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 8;
+    overflow: hidden;
+  }
+  .authors, .conference, .date, .open-dialog {
+    font-size: 0.8rem;
+  }
+  .tags {
+    overflow: auto;
+    white-space:nowrap;
+  }
+}
+
+.dialog-card {
+  @include common.default_main();
+  max-height: 600px;
+  .works {
+    color: common.$default_color;
+  }
+  .dialog-card-main {
+    overflow: auto;
+    .description {
+      font-weight: bolder;
+      font-size: 0.9rem;
+      margin: 10px 20px;
+    }
+    .authors {
+      font-size: 0.9rem;
+    }
+    .tags {
+      white-space: wrap;
+    }
+  }
+}
