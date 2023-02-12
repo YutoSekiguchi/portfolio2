@@ -103,6 +103,8 @@
         <v-row class="mb-3">
           <v-col cols="6" class="card-left">
             <ArticleImage
+              @click="openDialog(i)"
+              style="cursor:pointer;"
               :path="`works/${work.image}.png`"
             />
           </v-col>
