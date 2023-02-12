@@ -60,6 +60,7 @@
 <template>
   <v-app-bar 
     flat
+    absolute
     density="prominent"
     height="80"
   >
