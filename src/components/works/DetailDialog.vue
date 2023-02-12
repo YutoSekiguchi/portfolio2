@@ -2,6 +2,7 @@
   import { WorksType } from '@/settings/worksType';
   import { defineProps, computed, ComputedRef } from 'vue';
   import ArticleImage from './ArticleImage.vue';
+  import Chip from './Chip.vue';
   
   export interface Props {
     isDialog: boolean;
@@ -60,14 +61,12 @@
             <p>{{ work.authors }}</p>
           </v-row>
 
-          <div class="tags mb-6 ml-2">
-            <v-chip
-              variant="outlined"
-              color="cyan"
-              class="mr-3 mb-2"
+          <div class="tags mb-8 ml-2">
+            <Chip
               v-for="(tag, index) in work.tagList"
               :key="index"
-            ># {{ tag }}</v-chip>
+              :name="tag"
+            />
           </div>
         </v-main>
       </v-layout>

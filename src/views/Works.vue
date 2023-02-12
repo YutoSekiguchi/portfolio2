@@ -2,6 +2,7 @@
   import PageTitle from '@/components/common/PageTitle.vue';
   import DetailDialog from '@/components/works/DetailDialog.vue';
   import ArticleImage from '@/components/works/ArticleImage.vue';
+  import Chip from '@/components/works/Chip.vue';
   import Works from '../settings/works.json';
   import { WorksType } from '@/settings/worksType';
   import { ref, computed, watch } from 'vue';
@@ -32,7 +33,7 @@
     return cloneArray
   }
 
-  const worksList = ref<WorksType[]>(worksStore.works);
+  const worksList = ref<WorksType[]>(Works);
   // 全てのタグのリストをランダムな順で保持
   const allTagList = computed(() => {
     const res: string[] = [];
@@ -82,11 +83,10 @@
           class="search-tag-bar mt-2 ml-auto"
         >
           <template v-slot:chip="data">
-            <v-chip
-              variant="outlined"
-              color="cyan"
-              class="mr-2 mb-1"
-            >#&nbsp;{{ data.item.title }}</v-chip>
+            <Chip
+              :name="data.item.title"
+              cl="mr-2 mb-1"
+            />
           </template>
         </v-autocomplete>
       </v-col>
@@ -139,14 +139,12 @@
             </v-col>
 
             <v-col class="pl-0 tags">
-              <v-chip
-                variant="outlined"
-                color="cyan"
-                class="mr-3"
+              <Chip
                 v-for="(tag, index) in work.tagList"
                 :key="index"
                 @click="clickTag(tag)"
-              >#&nbsp;{{ tag }}</v-chip>
+                :name="tag"
+              />
             </v-col>
           </v-col> 
         </v-row>
