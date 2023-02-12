@@ -4,7 +4,7 @@
   import ArticleImage from '@/components/works/ArticleImage.vue';
   import Works from '../settings/works.json';
   import { WorksType } from '@/settings/worksType';
-  import { ref } from 'vue';
+  import { ref, computed, watch } from 'vue';
   import { useWorksStore } from '@/store/works';
 
   const worksStore = useWorksStore();
@@ -20,7 +20,46 @@
     isDialog.value = false;
   }
 
-  const worksList: WorksType[] = Works;
+  // 配列の要素の順番を入れ替える関数
+  const shuffleArray = (array: string[]) => {
+    const cloneArray = [...array]
+    for (let i = cloneArray.length - 1; i >= 0; i--) {
+      let rand = Math.floor(Math.random() * (i + 1))
+      let tmpStorage = cloneArray[i]
+      cloneArray[i] = cloneArray[rand]
+      cloneArray[rand] = tmpStorage
+    }
+    return cloneArray
+  }
+
+  const worksList = ref<WorksType[]>(worksStore.works);
+  // 全てのタグのリストをランダムな順で保持
+  const allTagList = computed(() => {
+    const res: string[] = [];
+    Works.map((work) => {
+      work.tagList.map((tag) => {
+        if (!res.includes(tag)) { res.push(tag); }
+      })
+    })
+    return shuffleArray(res);
+  })
+  const inputedTag = ref<string[]>(worksStore.searchTagList);
+
+  // 記事のタグクリック時の動作
+  const clickTag = (tag: string) => {
+    worksStore.changeTag(tag);
+    inputedTag.value = worksStore.searchTagList;
+  }
+
+  // ボックス選択した時の動作
+  watch(inputedTag, (nowTag) => {
+    if (nowTag.length <= 0) { 
+      worksList.value = Works;
+    } else {
+      worksStore.getWorks(nowTag);
+      worksList.value = worksStore.works;
+    }
+  })
 </script>
 
 <template>
@@ -32,22 +71,23 @@
   <div class="main mx-auto">
     <PageTitle title="Works" class="main-title mx-auto" />
     <v-col class="py-0">
-      <v-combobox
-        v-model="worksStore.searchTagList"
-        clearable
-        label="Search"
+      <v-autocomplete
+        v-model="inputedTag"
+        label="Select"
+        :items="allTagList"
         multiple
+        clearable
         variant="underlined"
         class="search-tag-bar mt-2 mx-auto"
       >
-        <template v-slot:selection="data">
+        <template v-slot:chip="data">
           <v-chip
             variant="outlined"
             color="cyan"
-            class="mr-3"
+            class="mr-2 mb-1"
           >#&nbsp;{{ data.item.title }}</v-chip>
         </template>
-      </v-combobox>
+      </v-autocomplete>
     </v-col>
     <v-col v-for="(work, i) in worksList" :key="i">
       <v-card
@@ -102,7 +142,7 @@
                 class="mr-3"
                 v-for="(tag, index) in work.tagList"
                 :key="index"
-                @click="worksStore.changeTag(tag)"
+                @click="clickTag(tag)"
               >#&nbsp;{{ tag }}</v-chip>
             </v-col>
           </v-col> 
