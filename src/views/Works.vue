@@ -69,26 +69,29 @@
     :work="worksList[num]"
   />
   <div class="main mx-auto">
-    <PageTitle title="Works" class="main-title mx-auto" />
-    <v-col class="py-0">
-      <v-autocomplete
-        v-model="inputedTag"
-        label="Select"
-        :items="allTagList"
-        multiple
-        clearable
-        variant="underlined"
-        class="search-tag-bar mt-2 mx-auto"
-      >
-        <template v-slot:chip="data">
-          <v-chip
-            variant="outlined"
-            color="cyan"
-            class="mr-2 mb-1"
-          >#&nbsp;{{ data.item.title }}</v-chip>
-        </template>
-      </v-autocomplete>
-    </v-col>
+    <v-row class="main-header mx-auto">
+      <PageTitle title="Works" />
+      <v-col class="py-0">
+        <v-autocomplete
+          v-model="inputedTag"
+          label="Select"
+          :items="allTagList"
+          multiple
+          clearable
+          variant="underlined"
+          class="search-tag-bar mt-2 ml-auto"
+        >
+          <template v-slot:chip="data">
+            <v-chip
+              variant="outlined"
+              color="cyan"
+              class="mr-2 mb-1"
+            >#&nbsp;{{ data.item.title }}</v-chip>
+          </template>
+        </v-autocomplete>
+      </v-col>
+    </v-row>
+    
     <v-col v-for="(work, i) in worksList" :key="i">
       <v-card
         variant="flat"
@@ -156,7 +159,7 @@
 .main {
   max-width: 1200px;
 }
-.main-title {
+.main-header {
   max-width: 1000px;
 }
 .card {
@@ -186,6 +189,6 @@ p, .icon {
   white-space:nowrap;
 }
 .search-tag-bar {
-  max-width: 600px;
+  max-width: 400px;
 }
 </style>
