@@ -7,6 +7,7 @@
     height?: number;
   }
   const props = defineProps<Props>();
+  const imgPath = new URL(`../../assets/${props.path}`, import.meta.url).href;
 </script>
 
 <template>
@@ -14,7 +15,7 @@
     contain
     :width="`${props.width? props.width: 500}`"
     :height="`${props.height? props.height: 300}`"
-    :src="`../src/assets/${props.path}`"
+    :src="imgPath"
     class="mx-auto"
   />
 </template>
