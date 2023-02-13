@@ -35,7 +35,7 @@
 .dialog-card {
   @include common.default_main();
   max-height: 600px;
-  .works {
+  .works, .products {
     color: common.$default_color;
   }
   .dialog-card-main {
