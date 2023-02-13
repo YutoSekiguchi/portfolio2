@@ -6,6 +6,16 @@ $default_color: #555;
   font-size: 2rem;
   font-weight: bold;
 }
+@mixin overflow_text($line_num) {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $line_num;
+  overflow: hidden;
+}
+@mixin overflow_tag {
+  overflow: auto;
+  white-space: nowrap;
+}
 
 p, .icon, .tab {
   color: $default_color;

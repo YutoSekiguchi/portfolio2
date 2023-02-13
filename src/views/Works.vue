@@ -1,8 +1,8 @@
 <script lang="ts" setup>
   import PageTitle from '@/components/common/PageTitle.vue';
   import DetailDialog from '@/components/works/DetailDialog.vue';
-  import ArticleImage from '@/components/works/ArticleImage.vue';
-  import Chip from '@/components/works/Chip.vue';
+  import ArticleImage from '@/components/common/ArticleImage.vue';
+  import Chip from '@/components/common/Chip.vue';
   import Works from '../settings/works.json';
   import { WorksType } from '@/settings/worksType';
   import { ref, computed, watch } from 'vue';
@@ -54,13 +54,17 @@
 
   // ボックス選択した時の動作
   watch(inputedTag, (nowTag) => {
-    if (nowTag.length <= 0) { 
+    if (nowTag.length <= 0) {
       worksList.value = Works;
     } else {
       worksStore.getWorks(nowTag);
       worksList.value = worksStore.works;
     }
   })
+
+  const createPath = (name: string) => {
+    return new URL(`../assets/${name}`, import.meta.url).href;
+  }
 </script>
 
 <template>
@@ -105,7 +109,7 @@
             <ArticleImage
               @click="openDialog(i)"
               style="cursor:pointer;"
-              :path="`works/${work.image}.png`"
+              :path="createPath(`works/${work.image}.png`)"
             />
           </v-col>
 

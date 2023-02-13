@@ -1,8 +1,8 @@
 <script lang="ts" setup>
   import { WorksType } from '@/settings/worksType';
   import { defineProps, computed, ComputedRef } from 'vue';
-  import ArticleImage from './ArticleImage.vue';
-  import Chip from './Chip.vue';
+  import ArticleImage from '../common/ArticleImage.vue';
+  import Chip from '../common/Chip.vue';
   
   export interface Props {
     isDialog: boolean;
@@ -15,6 +15,9 @@
   // 論文ページの表示
   const moveLink = (url?: string) => {
     window.open(url, '_blank');
+  }
+  const createPath = (name: string) => {
+    return new URL(`../../assets/${name}`, import.meta.url).href;
   }
 </script>
 
@@ -49,7 +52,7 @@
           <p class="text-center text-h6 font-weight-bold pt-2 px-5 mb-3">{{ work.title }}</p>
 
           <ArticleImage
-            :path="`works/${work.image}.png`"
+            :path="createPath(`works/${work.image}.png`)"
             class="mb-6"
           />
           

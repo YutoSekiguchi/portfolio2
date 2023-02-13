@@ -22,17 +22,13 @@
   .description {
     font-weight: bolder;
     font-size: 0.9rem;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 8;
-    overflow: hidden;
+    @include common.overflow_text(8);
   }
   .authors, .conference, .date, .open-dialog {
     font-size: 0.8rem;
   }
   .tags {
-    overflow: auto;
-    white-space:nowrap;
+    @include common.overflow_tag();
   }
 }
 

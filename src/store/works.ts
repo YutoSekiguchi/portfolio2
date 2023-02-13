@@ -23,7 +23,7 @@ export const useWorksStore = defineStore<string, WorksState, any, WorksActions>(
       const res: WorksType[] = [];
       Works.map((work) => {
         tags.map((tag) => {
-          if (work.tagList.includes(tag)) { res.push(work); }
+          if (work.tagList.includes(tag) && !res.includes(work)) { res.push(work); }
         })
       })
       this.works = res;

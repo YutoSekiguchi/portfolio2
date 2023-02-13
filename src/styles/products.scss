@@ -1,0 +1,44 @@
+@use 'common';
+$card_width: 350px;
+
+.products-main {
+  max-width: 1200px;
+  .products-main-header {
+    @include common.default_main();
+  }
+  .container {
+    justify-content:space-between;
+    &:after {
+      content:"";
+      display: block;
+      width: $card_width;
+    }
+    .card {
+      position: relative;
+      max-width: $card_width;
+      height: $card_width*1.25;
+      margin: 20px 0;
+      .card-title { 
+        font-size: 1.3rem;
+        font-weight: bold;
+        @include common.overflow_text(2);
+      }
+      .card-description {
+        font-weight: bolder;
+        font-size: 0.9rem;
+        @include common.overflow_text(4);
+      }
+      .card-grade {
+        position: absolute;
+        bottom: 0;
+        p {
+          font-size: 0.8rem;
+          font-weight: bolder;
+        }
+      }
+      .card-tags {
+        @include common.overflow_tag();
+      }
+    }
+  }
+}
