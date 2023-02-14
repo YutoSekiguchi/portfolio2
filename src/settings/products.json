@@ -8,35 +8,117 @@
     "tagList": ["Flutter", "Python", "MySQL"]
   },
   {
-    "title": "New!Meiji 明治大学NewsApp",
-    "image": "img-p1",
-    "description": "New!Meijiは「明治大学の最新の情報をお届けする「ニュースアプリ」です！このアプリは、明治大学の現役生だけでなくOBや入学予定の方など、明治大学の最新の情報を知りたい人向けのニュースアプリです。",
+    "title": "PP-Undo（卒論版）",
+    "image": "img-p2",
+    "description": "PP-Undo(Pen Pressure Undo)は、デジタル手書きにおけるUndoの軸として筆圧を利用したアプリケーションです。確信度や自信度の低い箇所をあえて筆圧を弱く書くことでまとめて簡単に削除することができます。",
     "grade": "B4",
-    "urlList": ["https://apps.apple.com/jp/app/id6443746449", "https://play.google.com/store/apps/details?id=com.nkmr.newmeiji"],
-    "tagList": ["Flutter", "Python", "MySQL"]
+    "urlList": ["https://ppundo.nkmr.io", "https://dl.nkmr-lab.org/papers/421"],
+    "tagList": ["Next.js", "TypeScript", "Golang", "MySQL", "Docker"]
   },
   {
-    "title": "New!Meiji 明治大学NewsApp",
-    "image": "img-p1",
-    "description": "New!Meijiは「明治大学の最新の情報をお届けする「ニュースアプリ」です！このアプリは、明治大学の現役生だけでなくOBや入学予定の方など、明治大学の最新の情報を知りたい人向けのニュースアプリです。",
+    "title": "ポートフォリオ",
+    "image": "img-p3",
+    "description": "今、開いてもらっているこのポートフォリオです。関口祐豊に関する様々な情報が記されてるサイトです。是非、熟読してください。Vue.jsのバージョン3が出たことによる練習も踏まえて作成しました。",
     "grade": "B4",
-    "urlList": ["https://apps.apple.com/jp/app/id6443746449", "https://play.google.com/store/apps/details?id=com.nkmr.newmeiji"],
-    "tagList": ["Flutter", "Python", "MySQL"]
+    "urlList": ["https://sekiguchi.nkmr.io/"],
+    "tagList": ["Vue.js", "TypeScript"]
   },
   {
-    "title": "New!Meiji 明治大学NewsApp",
-    "image": "img-p1",
-    "description": "New!Meijiは「明治大学の最新の情報をお届けする「ニュースアプリ」です！このアプリは、明治大学の現役生だけでなくOBや入学予定の方など、明治大学の最新の情報を知りたい人向けのニュースアプリです。",
+    "title": "Okidoki",
+    "image": "img-p4",
+    "description": "Okidokiは朝早く起きなきゃなのに二度寝をしてしまったり、布団に篭りすぎてしまったりする経験をタスクをクリアしないとアラームが止まらないようにすることでことで防ぐアプリケーションです。第10回学生スマートフォンアプリコンテストで奨励賞もいただいたアプリケーションです。",
     "grade": "B4",
-    "urlList": ["https://apps.apple.com/jp/app/id6443746449", "https://play.google.com/store/apps/details?id=com.nkmr.newmeiji"],
-    "tagList": ["Flutter", "Python", "MySQL"]
+    "urlList": ["https://nkmr-lab.org/news/smartphon10_okidoki.html", "http://contest2022.sig-cds.net/"],
+    "tagList": ["Flutter", "Python", "MySQL", "Vue.js"]
   },
   {
-    "title": "New!Meiji 明治大学NewsApp",
-    "image": "img-p1",
-    "description": "New!Meijiは「明治大学の最新の情報をお届けする「ニュースアプリ」です！このアプリは、明治大学の現役生だけでなくOBや入学予定の方など、明治大学の最新の情報を知りたい人向けのニュースアプリです。",
-    "grade": "B4",
-    "urlList": ["https://apps.apple.com/jp/app/id6443746449", "https://play.google.com/store/apps/details?id=com.nkmr.newmeiji"],
-    "tagList": ["Flutter", "Python", "MySQL"]
+    "title": "図書管理システム",
+    "image": "img-p5",
+    "description": "図書管理システムは、私が所属している中村研究室にある本の貸し出しを管理しているシステムです。ログインしてバーコードを読み取ることで本の追加や、貸し出しができるようになってます。",
+    "grade": "B3",
+    "urlList": ["https://lib.nkmr-lab.org/"],
+    "tagList": ["Next.js", "Golang", "MySQL", "Docker"]
+  },
+  {
+    "title": "TRing",
+    "image": "img-p6",
+    "description": "TRingは、作業部屋に設置したNFCリーダに利用者の身につけているリングをかざすことで、自身の休憩時間を任意で設定し、その時間をディスプレイ上で表示するシステムです。利用者自らが休憩時間を設定したこと、利用者以外の誰かがその休憩時間を見ていること、休憩中に身につけたリングが頻繁に視界に入ることで作業のやる気を彷彿させることによって休憩後も作業中と同じモチベーションで作業に取り掛かることができます。",
+    "grade": "B3",
+    "urlList": ["https://koblab.sakura.ne.jp/kobweb/projects/project27.html","http://id.nii.ac.jp/1001/00217271/"],
+    "tagList": ["Vue.js", "Golang", "MySQL", "Docker"]
+  },
+  {
+    "title": "あのどこ",
+    "image": "img-p7",
+    "description": "あのどこは、自分が漫画で好きなシーンなどを見返したい時に、「あのシーンどこだっけ？」ってなるのを防ぎ、読むべき巻とページを提示してくれるシステムです。このシステムによって好きなシーンの読み返しが簡単になると考えられます。",
+    "grade": "B3",
+    "tagList": ["Nuxt.js", "Golang", "MySQL", "Docker"]
+  },
+  {
+    "title": "コミクエ",
+    "image": "img-p8",
+    "description": "コミクエは、新刊を購入して読み始めた時に話の流れがわからなくなる問題点を、クイズ形式で振り返ることによってこれまでの話を思い出すアプリケーションです。第6回コミック工学にて発表しました。",
+    "grade": "B3",
+    "urlList": ["https://comiqa.com/","https://dl.nkmr-lab.org/papers/345"],
+    "tagList": ["Nuxt.js", "Golang", "MySQL", "Docker"]
+  },
+  {
+    "title": "選択実験システム",
+    "image": "img-p9",
+    "description": "このシステムは、「三択の選択肢における色要因が選択行動に及ぼす影響」というタイトルで研究を行った時の実験システムです。",
+    "grade": "B3",
+    "urlList": ["https://sekiguchi.nkmr.io/research-1/#/","https://dl.nkmr-lab.org/papers/349"],
+    "tagList": ["Vue.js", "PHP"]
+  },
+  {
+    "title": "天気予報LINEBOT",
+    "image": "img-p10",
+    "description": "このシステムは、毎朝気温と天気を教えてくれるLINE botです。特に、午後から雨が降る日などの傘忘れを防止したいために作成しました。",
+    "grade": "B2",
+    "urlList": ["https://liff.line.me/1645278921-kWRPP32q/?accountId=077onlso"],
+    "tagList": ["Python"]
+  },
+  {
+    "title": "GMail転送LINE Notify",
+    "image": "img-p11",
+    "description": "このシステムでは、GMailを普段あまり開かず大事なメールを見逃すのを防ぐ為、普段からよく開くLINEに転送するようにしているシステムです。これによって大事なメールの見逃しが減りました。",
+    "grade": "B2",
+    "tagList": ["GAS"]
+  },
+  {
+    "title": "クリスマスへの怨念",
+    "image": "img-p15",
+    "description": "これは、授業課題で作成したコロナ禍にもかかわらずクリスマスツリーの横にいるカップルに大きな雪を落とすという3Dプログラム作品です。この課題は12月24日に作成したものです…",
+    "grade": "B2",
+    "tagList": ["Processing"]
+  },
+  {
+    "title": "ピタゴラスイッチ",
+    "image": "img-p12",
+    "description": "これは、Processingを用いて大学の課題で作ったピタゴラスイッチです。ボールの転がりやドミノなど物理的な動きを多く実装したものとなっています。",
+    "grade": "B2",
+    "tagList": ["Processing"]
+  },
+  {
+    "title": "COVID-19 感染者予測",
+    "image": "img-p13",
+    "description": "これは、Pythonを用いてコロナの感染者数をテレビよりも早く予測していこうっていうプログラムです。",
+    "grade": "B2",
+    "tagList": ["Python"]
+  },
+  {
+    "title": "パズドラもどき",
+    "image": "img-p14",
+    "description": "これは、まだ関数の意味もよくわかってないような時に頑張って作ったパズドラ風のプログラムです。この頃の自分なりにはすごい頑張ってたと思います。",
+    "grade": "B1",
+    "tagList": ["Processing"]
+  },
+  {
+    "title": "地獄の選択ゲーム（仮）",
+    "image": "img-p16",
+    "description": "これは、我らが学科長の宮下先生を褒めないとパソコンの挙動をおかしくするというプログラムです。デスクトップの背景の色を真っ黒にしたりデスクトップにフォルダを増殖させたり、新しいウィンドウを10個増やしたりPCをシャットダウンさせたりするという地獄のようなものになっています笑",
+    "grade": "B1",
+    "urlList": ["https://twitter.com/homeimiyashita/status/1131155241196326913?s=46&t=T3q7772nnJ7f0vtznftIsQ"],
+    "tagList": ["HSP"]
   }
 ]

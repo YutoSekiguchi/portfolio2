@@ -43,12 +43,24 @@
 
           <ArticleImage
             :path="createPath(`products/${product.image}.png`)"
+            :height="200"
             class="mb-6"
           />
           
           <p class="font-weight-bold text-h5 ml-4">概要</p>
           <p class="description">{{ product.description }}</p>
 
+          <template v-if="product.urlList">
+            <v-row
+              v-for="(url, index) in product.urlList"
+              :key="index"
+              class="ml-0 pl-4 mt-4"
+            >
+              <v-icon icon="mdi-link" class="icon mr-1" />
+              <a :href="`${url}`" target="_blank">{{ url }}</a>
+            </v-row>
+          </template>
+          
           <div class="tags mb-12 ml-2 mt-8">
             <Chip
               v-for="(tag, index) in product.tagList"

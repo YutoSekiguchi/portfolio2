@@ -1,5 +1,12 @@
 @use 'common';
 $card_width: 350px;
+$card_margin: 20px 10px;
+@mixin hide_card {
+  content:"";
+  display: block;
+  width: $card_width;
+  margin: $card_margin;
+}
 
 .products-main {
   max-width: 1200px;
@@ -7,17 +14,19 @@ $card_width: 350px;
     @include common.default_main();
   }
   .container {
-    justify-content:space-between;
+    justify-content:space-around;
+    &:before {
+      @include hide_card();
+      order: 1;
+    }
     &:after {
-      content:"";
-      display: block;
-      width: $card_width;
+      @include hide_card();
     }
     .card {
       position: relative;
       max-width: $card_width;
       height: $card_width*1.25;
-      margin: 20px 0;
+      margin: $card_margin;
       .card-title { 
         font-size: 1.3rem;
         font-weight: bold;
