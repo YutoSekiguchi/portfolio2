@@ -6,9 +6,9 @@
   import Works from '../settings/works.json';
   import { WorksType } from '@/settings/worksType';
   import { ref, computed, watch } from 'vue';
-  import { useWorksStore } from '@/store/works';
+  import { useTagsStore } from '@/store/tags';
 
-  const worksStore = useWorksStore();
+  const worksStore = useTagsStore();
   const isDialog = ref<boolean>(false);
   const num = ref<number>(0);
 
