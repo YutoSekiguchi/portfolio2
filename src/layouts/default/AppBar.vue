@@ -47,6 +47,7 @@
     "Home",
     "About",
     "Works",
+    "Products",
   ] as const; // tabの文字を入れる配列
 
   type TabName = typeof tabNames[number]; // TabNameは型"Home"|"About"|"Works"となる
@@ -80,7 +81,7 @@
       </v-row>
       <h1 @click="() => {router.push('/')}" class="title">{{ title }}</h1>
 
-      <v-row class="pr-12 pt-6" justify="end">
+      <v-row class="pr-12 pt-0" justify="end">
         <div v-for="(name, index) in tabNames" :key="index">
           <p @click="navigatePage(name)" :class="`tab ${name===nowTab && 'now'}`">{{ name }}</p>
         </div>
