@@ -8,9 +8,6 @@
   max-width: 1200px;
   .works-main-header {
     @include common.default_main();
-    .search-tag-bar {
-      max-width: 400px;
-    }
   }
   .card {
     padding-bottom: 30px;

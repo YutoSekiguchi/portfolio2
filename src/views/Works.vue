@@ -2,10 +2,11 @@
   import PageTitle from '@/components/common/PageTitle.vue';
   import DetailDialog from '@/components/works/DetailDialog.vue';
   import ArticleImage from '@/components/common/ArticleImage.vue';
+  import SearchBar from '@/components/common/SearchBar.vue';
   import Chip from '@/components/common/Chip.vue';
   import Works from '../settings/works.json';
   import { WorksType } from '@/settings/worksType';
-  import { ref, computed, watch } from 'vue';
+  import { ref } from 'vue';
   import { useTagsStore } from '@/store/tags';
 
   const worksStore = useTagsStore();
@@ -21,46 +22,22 @@
     isDialog.value = false;
   }
 
-  // 配列の要素の順番を入れ替える関数
-  const shuffleArray = (array: string[]) => {
-    const cloneArray = [...array]
-    for (let i = cloneArray.length - 1; i >= 0; i--) {
-      let rand = Math.floor(Math.random() * (i + 1))
-      let tmpStorage = cloneArray[i]
-      cloneArray[i] = cloneArray[rand]
-      cloneArray[rand] = tmpStorage
-    }
-    return cloneArray
-  }
-
   const worksList = ref<WorksType[]>(Works);
-  // 全てのタグのリストをランダムな順で保持
-  const allTagList = computed(() => {
-    const res: string[] = [];
-    Works.map((work) => {
-      work.tagList.map((tag) => {
-        if (!res.includes(tag)) { res.push(tag); }
-      })
-    })
-    return shuffleArray(res);
-  })
-  const inputedTag = ref<string[]>([]);
 
+  const childComponent = ref();
   // 記事のタグクリック時の動作
   const clickTag = (tag: string) => {
-    worksStore.changeTag(tag);
-    inputedTag.value = worksStore.searchTagList;
+    childComponent.value.clickTag(tag, worksStore);
+  }
+  
+  const showAllWorks = () => {
+    worksList.value = Works;
   }
 
-  // ボックス選択した時の動作
-  watch(inputedTag, (nowTag) => {
-    if (nowTag.length <= 0) {
-      worksList.value = Works;
-    } else {
-      worksStore.getWorks(nowTag);
-      worksList.value = worksStore.works;
-    }
-  })
+  const showSearchWorks = (nowTag: string[]) => {
+    worksStore.getWorks(nowTag);
+    worksList.value = worksStore.works;
+  }
 
   const createPath = (name: string) => {
     return new URL(`../assets/${name}`, import.meta.url).href;
@@ -76,25 +53,13 @@
   <div class="works-main mx-auto">
     <v-row class="works-main-header mx-auto">
       <PageTitle title="Works" />
-      <v-col class="py-0">
-        <v-autocomplete
-          v-model="inputedTag"
-          label="Select"
-          :items="allTagList"
-          multiple
-          clearable
-          variant="underlined"
-          class="search-tag-bar mt-2 ml-auto"
-        >
-          <template v-slot:chip="data">
-            <Chip
-              :name="data.item.title"
-              cl="mr-2 mb-1"
-            />
-          </template>
-        </v-autocomplete>
-      </v-col>
-    </v-row>
+      <SearchBar
+        ref="childComponent"
+        :data="Works"
+        :showAll="showAllWorks"
+        :showSearch="showSearchWorks"
+      />
+    </v-row>  
     
     <v-col v-for="(work, i) in worksList" :key="i">
       <v-card

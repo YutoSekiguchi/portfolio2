@@ -2,11 +2,14 @@
   import PageTitle from '@/components/common/PageTitle.vue';
   import ArticleImage from '@/components/common/ArticleImage.vue';
   import DetailDialog from '@/components/products/DetailDialog.vue';
+  import SearchBar from '@/components/common/SearchBar.vue';
   import Chip from '@/components/common/Chip.vue';
   import Products from '../settings/products.json';
   import { ProductsType } from '@/settings/productsType';
-  import { ref, computed, watch } from 'vue';
-  
+  import { ref } from 'vue';
+  import { useTagsStore } from '@/store/tags';
+
+  const productsStore = useTagsStore();
 
   const isDialog = ref<boolean>(false);
   const num = ref<number>(0);
@@ -20,6 +23,22 @@
     isDialog.value = false;
   }
   const productsList = ref<ProductsType[]>(Products);
+
+  const childComponent = ref();
+  // 記事のタグクリック時の動作
+  const clickTag = (tag: string) => {
+    childComponent.value.clickTag(tag, productsStore);
+  }
+  
+  const showAllProducts = () => {
+    productsList.value = Products;
+  }
+
+  const showSearchProducts = (nowTag: string[]) => {
+    productsStore.getProducts(nowTag);
+    productsList.value = productsStore.products;
+  }
+  
   const createPath =  (name: string) => {
     return new URL(`../assets/${name}`, import.meta.url).href;
   }
@@ -34,6 +53,12 @@
   <div class="products-main mx-auto">
     <v-row class="products-main-header mx-auto">
       <PageTitle title="Products" />
+      <SearchBar
+        ref="childComponent"
+        :data="Products"
+        :showAll="showAllProducts"
+        :showSearch="showSearchProducts"
+      />
     </v-row>
 
     <v-row class="container">
@@ -61,6 +86,7 @@
             v-for="(tag, index) in product.tagList"
             :key="index"
             :name="tag"
+            @click="clickTag(tag)"
           />
         </v-col>
         <v-col cols="12" class="card-grade d-flex justify-space-between">
