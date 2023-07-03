@@ -25,7 +25,7 @@
     {
       icon: "mdi-school",
       title: "Affiliarion",
-      body: "明治大学 総合数理学部 先端メディアサイエンス学科 4年"
+      body: "明治大学 大学院 先端数理科学研究科 先端メディアサイエンス専攻 修士1年"
     },
     {
       icon: "mdi-laptop",

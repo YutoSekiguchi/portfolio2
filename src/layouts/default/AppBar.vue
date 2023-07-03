@@ -79,14 +79,16 @@
           />
         </v-btn>
       </v-row>
-      <h1 @click="() => {router.push('/')}" class="title">{{ title }}</h1>
+
+      <v-row @click="() => {router.push('/')}" justify="start">
+        <h1 class="title">{{ title }}</h1>
+      </v-row>
 
       <v-row class="pr-12 pt-0" justify="end">
         <div v-for="(name, index) in tabNames" :key="index">
           <p @click="navigatePage(name)" :class="`tab ${name===nowTab && 'now'}`">{{ name }}</p>
         </div>
       </v-row>
-
     </v-col>
   </v-app-bar>
 </template>
