@@ -1,5 +1,45 @@
 [
   {
+    "title": "PPUndo: 筆圧を軸としたUndo機能のためのストローク群に対する一括筆圧情報付与手法の提案とその評価",
+    "image": "img-6",
+    "description": "手書きにおいて，確信度や重要度ベースでストロークをまとめて削除することは既存の Undo や消しゴムでは手間である．我々はこれまでの研究において，筆圧を利用することで確信度ベースで Undo を可能とする PP-Undo を提案してきた．しかし，これまでの PP-Undo はストロークごとの筆圧を Undo の軸としているため，文字単位での削除や文章や図形などの意味的なまとまりごとでの削除ができないという問題があった．そこで本稿では，長期的な利用により得られた 36,465 本のストロークを分析し，筆圧値のブレが大きくなってしまう状況が生じてしまうことが明らかになった．また，グループの最初のストロークでグループの筆圧を設定する手法および，筆圧設定を失敗した場合に筆圧を再設定する手法を提案し，その精度を調査した．その結果，平均および上位 25% を利用した筆圧設定の精度が高く，最初に筆圧を調整することはユーザにとって容易であることが明らかとなった．",
+    "authors": "関口祐豊, 中村聡史",
+    "conference": "HCI-204 in 北海道",
+    "date": "2023/08/09",
+    "url": "https://dl.nkmr-lab.org/papers/468",
+    "tagList": ["HCI", "M1", "手書き", "筆圧", "Undo"]
+  },
+  {
+    "title": "コミクエ: 漫画の内容のクイズ作成が既読巻の想起に与える影響",
+    "image": "img-10",
+    "description": "漫画の最新巻を読むときに話の流れが分からず，前巻や前々巻を読み直すことがある．前巻の内容を振り返る方法の一つにあらすじがあるが，前巻を読んでいなかった場合，そのあらすじがネタバレとなる可能性がある．我々はこれまでの研究において，最新巻を読む際の想起を支援するため，クイズ形式で振り返りを可能とするシステムを実装し，クイズの種類の分析を行ってきた．しかし，実際に読者の想起度合いの調査は行なっておらず，クイズによる手法が想起に効果的かどうかを明らかにできていなかった．そこで本研究では，クイズの作成およびその確認が読者への想起を促すという仮説を立て，読書後にクイズを作成する手法と感想を書く手法とで，1 週間後の想起度合いを調査することで，仮説の検証を試みた．実験の結果，クイズを作成することが想起のための記憶に繋がり，またクイズの閲覧がさらなる想起につながることを明らかにした．",
+    "authors": "田中佑芽, 関口祐豊, 櫻井翼, 小松原達哉, 中村聡史",
+    "conference": "HCI204 in 北海道",
+    "date": "2023/08/08",
+    "url": "https://dl.nkmr-lab.org/papers/463",
+    "tagList": ["HCI", "漫画", "クイズ", "https://comiqa.com"]
+  },
+  {
+    "title": "Do People Tend to Select a Delayed Item?",
+    "image": "img-9",
+    "description": "Dark patterns that lead users to unintentionally harmful behaviors are often used in e-commerce and social media, and consumer troubles are frequent. Dark patterns are also seen in choice situations, where some attempt to induce the user's behavior by making specific options prominent. Focusing on user interfaces that seem fair at first glance, but induce users to make a choice, we investigated the effect of delayed display of options for inducing users to make a choice. Specifically, we conducted a crowdsourcing experiment based on the hypothesis that when only one choice is delayed, the delayed choice is more likely to be selected. The experimental results showed no tendency for the delayed option to be chosen more often overall. However, we found that the effect of the delayed display of alternatives on choice varied from person to person. Specifically, it was suggested that a delayed display of the option in the upper left corner of the screen with a delay time of 0.1 seconds for early choosers and a delayed display of the choice in the center of the screen with a delay time of 0.2 seconds for late choosers might induce their choice behavior.",
+    "authors": "Yuichiro Kinoshita, Yuto Sekiguchi, Riho Ueki, Kouta Yokoyama, Satoshi Nakamura",
+    "conference": "HCII in デンマーク",
+    "date": "2023/07/28",
+    "url": "https://dl.nkmr-lab.org/papers/450",
+    "tagList": ["HCII", "M1", "選択", "ダークパターン"]
+  },
+  {
+    "title": "Does the Average Color Influence Selection?",
+    "image": "img-8",
+    "description": "The Goldilocks effect is the tendency to select the middle choice when three choices that can be expressed in three levels, such as size and price, are presented. We investigate the possibility that the Goldilocks effect can also be applied to color and that it unintentionally distorts the choice. Specifically, we hypothesized that when presented with three choices consisting of two different colors and their average color (the average of the two colors), people would choose the average color, and we conducted a crowdsourcing experiment. The experiment results showed that people did not tend to choose the average color option. However, analysis by gender showed that females tended to select the average color option while males did not. In addition, when the average colors were similar to one of the two colors in the three options, both males and females tended to select the less similar different color option.",
+    "authors": "Yuto Sekiguchi, Riho Ueki, Kouta Yokoyama, Satoshi Nakamura",
+    "conference": "HCII in デンマーク",
+    "date": "2023/07/28",
+    "url": "https://dl.nkmr-lab.org/papers/452",
+    "tagList": ["HCII", "M1", "選択", "色", "ゴルディロックス効果"]
+  },
+  {
     "title": "選択肢の時間差表示が選択行動に及ぼす影響",
     "image": "img-7",
     "description": "ユーザを騙して意図していないことを実行させるダークパターンが問題になっている．我々は，選択インタフェースとして一見公平でありながらも，実際には選択を誘導しているダークパターンが存在すると考え，研究に取り組んできている．本稿では，選択肢の遅延表示は選択を誘導しないが，先行表示は選択を誘導するという仮説のもと，選択肢を遅延表示した場合と，先行表示した場合の選択誘導の効果を評価する実験をクラウドソーシング上で実施した．実験の結果，選択肢を遅延表示したときはその選択肢が選ばれやすい傾向はないが，先行表示したときはその選択肢が選ばれやすい傾向があることがわかった．また，先行表示した選択肢が選ばれた場合は選択時間が短かった一方で，選ばれなかった場合は選択時間が長かったことが明らかになった．",
