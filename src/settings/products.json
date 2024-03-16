@@ -48,6 +48,13 @@
     "code": "https://github.com/YutoSekiguchi/alque"
   },
   {
+    "title": "Letter App",
+    "image": "img-p23",
+    "description": "筆跡を再現して徐々に描かれていく手紙をシェアすることで手紙に込める気持ちをより伝えやすくするアプリです。",
+    "grade": "2023",
+    "tagList": ["Next.js", "Golang", "Vercel", "PlanetScale", "API Gateway", "DynamoDB"]
+  },
+  {
     "title": "New!Meiji 明治大学NewsApp",
     "image": "img-p1",
     "description": "New!Meijiは「明治大学の最新の情報をお届けする「ニュースアプリ」です！このアプリは、明治大学の現役生だけでなくOBや入学予定の方など、明治大学の最新の情報を知りたい人向けのニュースアプリです。",
