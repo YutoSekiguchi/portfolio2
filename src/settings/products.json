@@ -32,6 +32,14 @@
     "code": "https://github.com/YutoSekiguchi/PP-Undo-Plus"
   },
   {
+    "title": "PP-Undo研究者（GPTs）",
+    "image": "img-p24",
+    "description": "自分の研究であるPP-Undoについて学習させたGPTsとなっています。",
+    "grade": "2023",
+    "tagList": ["ChatGPT"],
+    "urlList": ["https://chat.openai.com/g/g-YZIp57pv1-pp-undoyan-jiu-zhe"]
+  },
+  {
     "title": "漢気記録アプリ",
     "image": "img-p18",
     "description": "旅行先での支払い方法は2パターンあると思います。ワリカなどを使って楽に割り勘する支払い方法と漢気じゃんけんする方法です。このアプリケーションは漢気じゃんけんでの支払いの蓄積が誰にどのくらい溜まっているかを記録するアプリケーションです。",
