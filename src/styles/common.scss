@@ -21,6 +21,16 @@ p, .icon, .tab {
   color: $default_color;
 }
 
+.el-title {
+  @include default_big_text();
+  border-bottom: 2px solid rgba(177, 177, 177, 0.5);
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+}
+
 .search-tag-bar {
   max-width: 400px;
 }

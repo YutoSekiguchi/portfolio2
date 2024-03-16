@@ -1,5 +1,18 @@
 [
   {
+    "title": "コミクエ: 他者が作成したクイズが漫画の既読巻の想起に及ぼす影響",
+    "image": "img-13",
+    "description": "漫画の最新巻を読むときに話の流れがわからず，前巻や前々巻を読み直すことがある．時間が十分にあるときには読み直すことは楽しいものであるが，購入し続けている漫画のタイトル数が多い場合や時間に限りがある場合には出来るだけ手早く前の巻の状況を思い出したいと考えることも多い．前巻の内容を手軽に振り返る方法の一つにあらすじがあるが，前巻を読んでいなかった場合，そのあらすじがネタバレとなる可能性がある．我々はこれまでの研究において，最新巻を読む際の想起を支援するため，クイズ形式で振り返りを可能とするシステムを実装してきた．また，読者自身がクイズを作成し，一週間後にそのクイズを振り返ることでどの程度想起できるのか調査を行い，感想を記述するよりもクイズを作成する方が想起を促すことが明らかとなった．しかし，他者が作成したクイズが想起に有効であるか明らかにできていなかった．また，漫画の新刊が発売されるまでおよそ数か月かかることを考慮することができておらず，実用性を検証できていなかった．そこで本研究では，漫画を読んだ約 5 か月後に想起度合いを調査することで，他者が作成したクイズが想起に有効であるか検証を試みた．その結果，他者が作成したクイズを確認することも想起に繋がることが明らかとなった．",
+    "authors": "田中佑芽, 関口祐豊, 櫻井翼, 中村聡史",
+    "conference": "EC-71 in 京都",
+    "date": "2024/03/19",
+    "url": "https://dl.nkmr-lab.org/papers/509",
+    "tagList": ["EC", "M1", "漫画", "クイズ", "https://comiqa.com"],
+    "paper": "https://dl.nkmr-lab.org/papers/509/paper.pdf",
+    "slide": "https://dl.nkmr-lab.org/papers/509",
+    "system": "https://comiqa.com"
+  },
+  {
     "title": "漫画の振り返りを支援するクイズとその答えからのシーン推定",
     "image": "img-12",
     "description": "漫画の読書において，連載作品を読んでいると物語やキャラクタについて忘れてしまいがちである．ここで，クイズ形式で漫画の振り返りを支援するサービスがあるが，そのクイズに該当する部分を改めて探すことは手間であり，振り返りを難しくしていたことがあげられる．そのため本研究では，漫画に対するクイズ内容とその答え，またその漫画的特徴を利用し，そのクイズに該当するシーンを推定可能かについて検証を行なった．また，漫画内で抽出可能な箇所や推定が難しい場面についての考察を行ったところ，特定のキーワードや出来事があった場面は推定しやすく，一方でクイズに登場頻度の高いキャラクタ名が含まれる場合や，後からその出来事について説明がなされる場面の推定が困難であった．",
@@ -7,7 +20,9 @@
     "conference": "HCG2023 in 福岡",
     "date": "2023/12/12",
     "url": "https://dl.nkmr-lab.org/papers/487",
-    "tagList": ["HCG", "M1", "漫画", "クイズ", "https://comiqa.com"]
+    "tagList": ["HCG", "M1", "漫画", "クイズ", "https://comiqa.com"],
+    "paper": "https://dl.nkmr-lab.org/papers/487/paper.pdf",
+    "slide": "https://dl.nkmr-lab.org/papers/487"
   },
   {
     "title": "PP-Undo+: 筆圧を軸とした手書き編集手法",
@@ -17,17 +32,25 @@
     "conference": "第31回WISS in 八ヶ岳",
     "date": "2023/11/29",
     "url": "https://dl.nkmr-lab.org/papers/482",
-    "tagList": ["WISS", "M1", "手書き", "筆圧", "Undo"]
+    "tagList": ["WISS", "M1", "手書き", "筆圧", "Undo"],
+    "paper": "https://dl.nkmr-lab.org/papers/482/paper.pdf",
+    "slide": "https://dl.nkmr-lab.org/papers/482",
+    "code": "https://github.com/YutoSekiguchi/PP-Undo-Plus",
+    "system": "https://ppundo.nkmr.io"
   },
   {
-    "title": "PPUndo: 筆圧を軸としたUndo機能のためのストローク群に対する一括筆圧情報付与手法の提案とその評価",
+    "title": "PP-Undo: 筆圧を軸としたUndo機能のためのストローク群に対する一括筆圧情報付与手法の提案とその評価",
     "image": "img-6",
     "description": "手書きにおいて，確信度や重要度ベースでストロークをまとめて削除することは既存の Undo や消しゴムでは手間である．我々はこれまでの研究において，筆圧を利用することで確信度ベースで Undo を可能とする PP-Undo を提案してきた．しかし，これまでの PP-Undo はストロークごとの筆圧を Undo の軸としているため，文字単位での削除や文章や図形などの意味的なまとまりごとでの削除ができないという問題があった．そこで本稿では，長期的な利用により得られた 36,465 本のストロークを分析し，筆圧値のブレが大きくなってしまう状況が生じてしまうことが明らかになった．また，グループの最初のストロークでグループの筆圧を設定する手法および，筆圧設定を失敗した場合に筆圧を再設定する手法を提案し，その精度を調査した．その結果，平均および上位 25% を利用した筆圧設定の精度が高く，最初に筆圧を調整することはユーザにとって容易であることが明らかとなった．",
     "authors": "関口祐豊, 中村聡史",
     "conference": "HCI-204 in 北海道",
     "date": "2023/08/09",
     "url": "https://dl.nkmr-lab.org/papers/468",
-    "tagList": ["HCI", "M1", "手書き", "筆圧", "Undo"]
+    "tagList": ["HCI", "M1", "手書き", "筆圧", "Undo"],
+    "paper": "https://dl.nkmr-lab.org/papers/468/paper.pdf",
+    "slide": "https://dl.nkmr-lab.org/papers/468",
+    "code": "https://github.com/YutoSekiguchi/PP-Undo",
+    "system": "https://ppundo.nkmr.io"
   },
   {
     "title": "コミクエ: 漫画の内容のクイズ作成が既読巻の想起に与える影響",
@@ -37,7 +60,10 @@
     "conference": "HCI204 in 北海道",
     "date": "2023/08/08",
     "url": "https://dl.nkmr-lab.org/papers/463",
-    "tagList": ["HCI", "M1", "漫画", "クイズ", "https://comiqa.com"]
+    "tagList": ["HCI", "M1", "漫画", "クイズ", "https://comiqa.com"],
+    "paper": "https://dl.nkmr-lab.org/papers/463/paper.pdf",
+    "slide": "https://dl.nkmr-lab.org/papers/463",
+    "system": "https://comiqa.com"
   },
   {
     "title": "Do People Tend to Select a Delayed Item?",
@@ -47,7 +73,9 @@
     "conference": "HCII in デンマーク",
     "date": "2023/07/28",
     "url": "https://dl.nkmr-lab.org/papers/450",
-    "tagList": ["HCII", "M1", "選択", "ダークパターン"]
+    "tagList": ["HCII", "M1", "選択", "ダークパターン"],
+    "paper": "https://dl.nkmr-lab.org/papers/450/paper.pdf",
+    "slide": "https://dl.nkmr-lab.org/papers/450"
   },
   {
     "title": "Does the Average Color Influence Selection?",
@@ -57,7 +85,9 @@
     "conference": "HCII in デンマーク",
     "date": "2023/07/28",
     "url": "https://dl.nkmr-lab.org/papers/452",
-    "tagList": ["HCII", "M1", "選択", "色", "ゴルディロックス効果"]
+    "tagList": ["HCII", "M1", "選択", "色", "ゴルディロックス効果"],
+    "paper": "https://dl.nkmr-lab.org/papers/452/paper.pdf",
+    "slide": "https://dl.nkmr-lab.org/papers/452"
   },
   {
     "title": "選択肢の時間差表示が選択行動に及ぼす影響",
@@ -67,7 +97,9 @@
     "conference": "HCS in 沖縄",
     "date": "2023/05/16",
     "url": "https://dl.nkmr-lab.org/papers/458",
-    "tagList": ["HCS", "M1", "選択", "ダークパターン"]
+    "tagList": ["HCS", "M1", "選択", "ダークパターン"],
+    "paper": "https://dl.nkmr-lab.org/papers/458/paper.pdf",
+    "slide": "https://dl.nkmr-lab.org/papers/458"
   },
   {
     "title": "PP-Undo: 筆圧の制御により付与されたストロークの確信度に基づくUndo/Redo手法の提案",
@@ -77,7 +109,11 @@
     "conference": "HCI-201 in 石垣島",
     "date": "2023/01/16",
     "url": "https://dl.nkmr-lab.org/papers/421",
-    "tagList": ["HCI", "B4", "手書き", "筆圧", "Undo"]
+    "tagList": ["HCI", "B4", "手書き", "筆圧", "Undo"],
+    "paper": "https://dl.nkmr-lab.org/papers/421/paper.pdf",
+    "slide": "https://dl.nkmr-lab.org/papers/421",
+    "code": "https://github.com/YutoSekiguchi/PP-Undo",
+    "system": "https://ppundo.nkmr.io"
   },
   {
     "title": "デジタルペンの筆圧による濃淡表現の有無が筆算の正答率に及ぼす影響",
@@ -87,7 +123,9 @@
     "conference": "HCGシンポジウム in 高松",
     "date": "2022/12/16",
     "url": "https://dl.nkmr-lab.org/papers/415",
-    "tagList": ["HCG", "B4", "手書き", "筆圧"]
+    "tagList": ["HCG", "B4", "手書き", "筆圧"],
+    "paper": "https://dl.nkmr-lab.org/papers/415/paper.pdf",
+    "slide": "https://dl.nkmr-lab.org/papers/415"
   },
   {
     "title": "選択インタフェースにおけるアイテムの遅延表示が選択に及ぼす影響",
@@ -97,7 +135,9 @@
     "conference": "HCI-200 in 淡路島",
     "date": "2022/11/09",
     "url": "https://dl.nkmr-lab.org/papers/409",
-    "tagList": ["HCI", "B4", "選択", "ダークパターン"]
+    "tagList": ["HCI", "B4", "選択", "ダークパターン"],
+    "paper": "https://dl.nkmr-lab.org/papers/409/paper.pdf",
+    "slide": "https://dl.nkmr-lab.org/papers/409"
   },
   {
     "title": "TRing: 休憩によるやる気低下を防ぐ行動支援システムの提案",
@@ -107,7 +147,9 @@
     "conference": "GN-116 オンライン",
     "date": "2022/03/07",
     "url": "https://ipsj.ixsq.nii.ac.jp/ej/index.php?active_action=repository_view_main_item_detail&page_id=13&block_id=8&item_id=217379&item_no=1",
-    "tagList": ["GN", "B3", "休憩"]
+    "tagList": ["GN", "B3", "休憩"],
+    "paper": "https://ipsj.ixsq.nii.ac.jp/ej/?action=repository_uri&item_id=217379&file_id=1&file_no=1",
+    "code": "https://github.com/YutoSekiguchi/Tring"
   },
   {
     "title": "三択の選択肢における色要因が選択行動に及ぼす影響",
@@ -117,7 +159,9 @@
     "conference": "HCI-195 in 淡路島",
     "date": "2021/12/01",
     "url": "https://dl.nkmr-lab.org/papers/349",
-    "tagList": ["HCI", "B3", "選択", "色", "ゴルディロックス効果"]
+    "tagList": ["HCI", "B3", "選択", "色", "ゴルディロックス効果"],
+    "paper": "https://dl.nkmr-lab.org/papers/349/paper.pdf",
+    "slide": "https://dl.nkmr-lab.org/papers/349"
   },
   {
     "title": "コミクエ: 新刊読書時に前巻までの流れを想起可能とするクイズ共有手法の提案",
@@ -127,6 +171,9 @@
     "conference": "第6回コミック工学",
     "date": "2021/11/21",
     "url": "https://dl.nkmr-lab.org/papers/345",
-    "tagList": ["コミック工学", "B3", "漫画", "クイズ", "https://comiqa.com"]
+    "tagList": ["コミック工学", "B3", "漫画", "クイズ", "https://comiqa.com"],
+    "paper": "https://dl.nkmr-lab.org/papers/345/paper.pdf",
+    "slide": "https://dl.nkmr-lab.org/papers/345",
+    "system": "https://comiqa.com"
   }
 ]

@@ -1,8 +1,5 @@
 @use 'common';
 
-.top {
-  background-color: #eeeeee;
-}
 .cards {
   @include common.default_main(); 
 }

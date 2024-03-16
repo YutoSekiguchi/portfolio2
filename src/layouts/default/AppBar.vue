@@ -43,52 +43,89 @@
   }
 
   const title: string = "Yuto Sekiguchi";
-  const tabNames = [
-    "Home",
-    "About",
-    "Works",
-    "Products",
-  ] as const; // tabの文字を入れる配列
+  // const tabNames = [
+  //   "Home",
+  //   "About",
+  //   "Works",
+  //   "Products",
+  // ] as const; // tabの文字を入れる配列
 
-  type TabName = typeof tabNames[number]; // TabNameは型"Home"|"About"|"Works"となる
+  // type TabName = typeof tabNames[number]; // TabNameは型"Home"|"About"|"Works"となる
 
-  const navigatePage = (name: TabName) => {
-    const lowerName: string = name=="Home"? "": name.toLowerCase(); // Home画面のURLは / のみのためHomeでは空を返す
-    router.push(`/${lowerName}`);
-  }
+  // const navigatePage = (name: TabName) => {
+  //   const lowerName: string = name=="Home"? "": name.toLowerCase(); // Home画面のURLは / のみのためHomeでは空を返す
+  //   router.push(`/${lowerName}`);
+  // }
 </script>
 
 <template>
   <v-app-bar 
     flat
-    absolute
-    density="prominent"
-    height="80"
+    class="app-bar"
   >
     <v-col class="app-bar-elements mx-auto">
-      <v-row class="pr-12 pt-5" justify="end">
-        <v-btn
-          icon 
-          v-for="(icon, index) in icons"
-          :key="index"
-          @click="moveLink(icon.link)"
-        >
-          <v-icon 
-            :icon=icon.name
-            class="icon"
-          />
-        </v-btn>
+      <v-row class="items-center bar" justify="space-between" >
+        <div @click="() => {router.push('/')}">
+          <h1 class="title">{{ title }}</h1>
+        </div>
+        <div>
+          <v-btn
+            icon 
+            v-for="(icon, index) in icons"
+            :key="index"
+            @click="moveLink(icon.link)"
+          >
+            <v-icon 
+              :icon=icon.name
+              class="icon"
+            />
+          </v-btn>
+        </div>
       </v-row>
 
-      <v-row @click="() => {router.push('/')}" justify="start">
-        <h1 class="title">{{ title }}</h1>
-      </v-row>
 
-      <v-row class="pr-12 pt-0" justify="end">
+      <!-- <v-row class="pr-12 pt-0" justify="end">
         <div v-for="(name, index) in tabNames" :key="index">
           <p @click="navigatePage(name)" :class="`tab ${name===nowTab && 'now'}`">{{ name }}</p>
         </div>
-      </v-row>
+      </v-row> -->
     </v-col>
   </v-app-bar>
 </template>
+
+<style scoped>
+@media (max-width: 599px) {
+  .title {
+    font-size: 20px; /* スマホ等の小さな画面でのフォントサイズ */
+  }
+  .bar {
+    padding-left: 20px;
+    padding-right: 10px;
+    padding-top: 5px;
+  }
+  .app-bar {
+    height: 60px;
+  }
+}
+
+@media (min-width: 600px) {
+  .title {
+    font-size: 24px; /* タブレットやデスクトップ等の大きな画面でのフォントサイズ */
+  }
+  .tab {
+    font-size: 16px; /* タブレットやデスクトップ等の大きな画面でのタブのフォントサイズ */
+  }
+  .bar {
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-top: 10px;
+  }
+  .app-bar {
+    height: 60px;
+  }
+}
+
+.items-center {
+  align-items: center;
+}
+</style>

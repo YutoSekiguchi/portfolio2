@@ -4,7 +4,8 @@ interface ProductsType {
   description: string,
   grade: string,
   urlList?: string[],
-  tagList: string[]
+  tagList: string[],
+  code?: string,
 }
 
 export {

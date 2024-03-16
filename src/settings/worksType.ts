@@ -6,7 +6,12 @@ interface WorksType {
   conference?: string,
   date?: string,
   url?: string,
-  tagList?: string[]
+  tagList?: string[],
+  paper?: string,
+  video?: string,
+  slide?: string,
+  code?: string,
+  system?: string,
 }
 
 export {
