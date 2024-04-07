@@ -171,6 +171,7 @@
 <style scoped>
 .me-img {
   max-width: 250px;
+  border-radius: 5%;
   @media (max-width: 599px) {
     margin: 20px auto;
     display: block;
