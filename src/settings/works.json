@@ -1,5 +1,17 @@
 [
   {
+    "title": "PP-Checker: プログラミング教育における大規模言語モデルと協調した曖昧性のある自動採点システム",
+    "image": "img-15",
+    "description": "本論文では，プログラミング教育における採点業務の効率化を目指し，即時性，採点精度，曖昧性に焦点を当てた自動採点システムPP-Checkerを提案する．PP-Checkerは，大規模言語モデル（LLM）との協調により，動的かつ視覚的なプログラミング言語の自動採点を実現する．また，リアルタイムでプロンプトを調整できる機能を備えており，学生が課題に取り組んでいる間にも採点基準を更新し，結果をすぐに反映できる．実際の講義で計2400分運用した結果から，PP-Checkerは課題の再提出時間を平均3.6分まで短縮し，課題採点業務の効率化に貢献することが示された．",
+    "authors": "関口祐豊, 中村聡史",
+    "conference": "WISS2024 in 苗場",
+    "date": "2024/12/12",
+    "url": "https://dl.nkmr-lab.org/papers/540",
+    "tagList": ["WISS", "M2", "LLM", "大規模言語モデル", "GPT", "Processing", "プログラミング教育", "クリエイティブコーディング"],
+    "paper": "https://dl.nkmr-lab.org/papers/540/paper.pdf",
+    "slide": "https://dl.nkmr-lab.org/papers/540"
+  },
+  {
     "title": "ComiQA: A Comic Question-Answer Sharing System that Helps Users to Recollect the Content of Previous Volumes",
     "image": "img-13",
     "description": "It takes several months or years to release a new volume of a comic book after the previous volume. Therefore, when reading a long-awaited newest volume of a comic, it is sometimes difficult to recollect and understand the flow of the story, causing the readers to reread the previous volume or reread from the first volume to check the story. Re-reading can be fun when there is enough time. However, when there are many volumes of the comic or the time is limited, the reader will want to recollect the previous content as soon as possible to read the newest volume. One way to recollect the previous content quickly is to check its summary. However, a synopsis is often not enough to recollect everything and may become a spoiler if the reader has forgotten to read the previous volume. In this paper, we proposed and implemented a system that enables users to recollect the content of the previous volume by quizzes (question-answer pairs). We considered that just reading a question text would not be a spoiler. In addition, we released our system, “ComiQA,” as a Web service and found the characteristics of quizzes made by analyzing the registered 1465 quizzes in our service. We also experimented to investigate and compare the degree of recollection of creating quizzes and writing reviews. We found that creating quizzes helps people recollect the episodes more effectively than writing reviews, and viewing the quiz leads to further recollection.",
