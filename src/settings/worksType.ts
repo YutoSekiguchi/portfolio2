@@ -12,6 +12,10 @@ interface WorksType {
   slide?: string,
   code?: string,
   system?: string,
+  award?: string,
+  review?: boolean,
+  publication_type?: string,
+  citation: string,
 }
 
 export {

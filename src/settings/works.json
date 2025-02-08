@@ -9,7 +9,11 @@
     "url": "https://dl.nkmr-lab.org/papers/547",
     "tagList": ["HCI", "M2", "手書き", "摩擦", "ペン先", "書き心地"],
     "paper": "https://dl.nkmr-lab.org/papers/547/paper.pdf",
-    "slide": "https://dl.nkmr-lab.org/papers/547"
+    "slide": "https://dl.nkmr-lab.org/papers/547",
+    "award": "学生奨励賞",
+    "review": false,
+    "publication_type": "Domestic Conference",
+    "citation": "能宗 巧, 瀬崎 夕陽, 小林 沙利, 関口 祐豊, 中村 聡史, 近藤 葉乃香, 梅澤 侑己, 橋本 忠樹. 書き心地の改善に向けたペン先の摩擦が筆記のブレに及ぼす影響, 情報処理学会 研究報告ヒューマンコンピュータインタラクション（HCI）, Vol.2025-HCI-211, No.15, pp.1-8, 2025."
   },
   {
     "title": "微細な筆圧変化を用いたシート判別手法の提案",
@@ -21,7 +25,11 @@
     "url": "https://dl.nkmr-lab.org/papers/548",
     "tagList": ["HCI", "M2", "筆圧", "シート判別"],
     "paper": "https://dl.nkmr-lab.org/papers/548/paper.pdf",
-    "slide": "https://dl.nkmr-lab.org/papers/548"
+    "slide": "https://dl.nkmr-lab.org/papers/548",
+    "award": "",
+    "review": false,
+    "publication_type": "Domestic Conference",
+    "citation": "瀬崎 夕陽, 関口 祐豊, 中村 聡史. 微細な筆圧変化を用いたシート判別手法の提案, 情報処理学会 研究報告ヒューマンコンピュータインタラクション（HCI）, Vol.2025-HCI-211, No.19, pp.1-8, 2025."
   },
   {
     "title": "PP-Checker: プログラミング教育における大規模言語モデルと協調した曖昧性のある自動採点システム",
@@ -33,7 +41,11 @@
     "url": "https://dl.nkmr-lab.org/papers/540",
     "tagList": ["WISS", "M2", "LLM", "大規模言語モデル", "GPT", "Processing", "プログラミング教育", "クリエイティブコーディング"],
     "paper": "https://dl.nkmr-lab.org/papers/540/paper.pdf",
-    "slide": "https://dl.nkmr-lab.org/papers/540"
+    "slide": "https://dl.nkmr-lab.org/papers/540",
+    "award": "",
+    "review": true,
+    "publication_type": "Domestic Conference",
+    "citation": "関口 祐豊, 中村 聡史. PP-Checker: プログラミング教育における大規模言語モデルと協調した曖昧性のある自動採点システム, 第32回インタラクティブシステムとソフトウェアに関するワークショップ（WISS2024）, 2024."
   },
   {
     "title": "ComiQA: A Comic Question-Answer Sharing System that Helps Users to Recollect the Content of Previous Volumes",
@@ -46,7 +58,11 @@
     "tagList": ["KES", "M2", "漫画", "クイズ", "https://comiqa.com"],
     "paper": "https://dl.nkmr-lab.org/papers/537/paper.pdf",
     "slide": "https://dl.nkmr-lab.org/papers/537",
-    "system": "https://comiqa.com"
+    "system": "https://comiqa.com",
+    "award": "",
+    "review": true,
+    "publication_type": "International Conference",
+    "citation": "Yume Tanaka, Yuto Sekiguchi, Tsubasa Sakurai, Satoshi Nakamura. ComiQA: A Comic Question-Answer Sharing System that Helps Users to Recollect the Content of Previous Volumes, 28th International Conference on Knowledge-Based and Intelligent Information & Engineering Systems (KES2024), 2024."
   },
   {
     "title": "Manga Scene Estimation by Quiz and Answer",
@@ -59,7 +75,11 @@
     "tagList": ["KES", "M2", "漫画", "クイズ", "https://comiqa.com"],
     "paper": "https://dl.nkmr-lab.org/papers/538/paper.pdf",
     "slide": "https://dl.nkmr-lab.org/papers/538",
-    "system": "https://comiqa.com"
+    "system": "https://comiqa.com",
+    "award": "",
+    "review": true,
+    "publication_type": "International Conference",
+    "citation": "Tsubasa Sakurai, Yume Tanaka, Yuto Sekiguchi, Satoshi Nakamura. Manga Scene Estimation by Quiz Question and Answer, 28th International Conference on Knowledge-Based and Intelligent Information & Engineering Systems (KES2024), 2024."
   },
   {
     "title": "コミクエ: 他者が作成したクイズが漫画の既読巻の想起に及ぼす影響",
@@ -72,7 +92,11 @@
     "tagList": ["EC", "M1", "漫画", "クイズ", "https://comiqa.com"],
     "paper": "https://dl.nkmr-lab.org/papers/509/paper.pdf",
     "slide": "https://dl.nkmr-lab.org/papers/509",
-    "system": "https://comiqa.com"
+    "system": "https://comiqa.com",
+    "award": "",
+    "review": false,
+    "publication_type": "Domestic Conference",
+    "citation": "田中 佑芽, 関口 祐豊, 櫻井 翼, 中村 聡史. コミクエ: 他者が作成したクイズが漫画の既読巻の想起に及ぼす影響, 情報処理学会 研究報告エンタテインメントコンピューティング（EC）, Vol.2024-EC-71, No.36, pp.1-7, 2024."
   },
   {
     "title": "漫画の振り返りを支援するクイズとその答えからのシーン推定",
@@ -84,7 +108,11 @@
     "url": "https://dl.nkmr-lab.org/papers/487",
     "tagList": ["HCG", "M1", "漫画", "クイズ", "https://comiqa.com"],
     "paper": "https://dl.nkmr-lab.org/papers/487/paper.pdf",
-    "slide": "https://dl.nkmr-lab.org/papers/487"
+    "slide": "https://dl.nkmr-lab.org/papers/487",
+    "award": "",
+    "review": false,
+    "publication_type": "Domestic Conference",
+    "citation": "櫻井 翼, 田中 佑芽, 関口 祐豊, 中村 聡史. 漫画の振り返りを支援するクイズとその答えからのシーン推定, HCGシンポジウム2023, No.B-4-3, 2023."
   },
   {
     "title": "PP-Undo+: 筆圧を軸とした手書き編集手法",
@@ -98,7 +126,11 @@
     "paper": "https://dl.nkmr-lab.org/papers/482/paper.pdf",
     "slide": "https://dl.nkmr-lab.org/papers/482",
     "code": "https://github.com/YutoSekiguchi/PP-Undo-Plus",
-    "system": "https://ppundo.nkmr.io"
+    "system": "https://ppundo.nkmr.io",
+    "award": "",
+    "review": false,
+    "publication_type": "Domestic Conference Demonstration/Poster",
+    "citation": "関口 祐豊, 中村 聡史. PP-Undo+: 筆圧を軸とした手書き編集手法, 第31回インタラクティブシステムとソフトウェアに関するワークショップ, 2023."
   },
   {
     "title": "PP-Undo: 筆圧を軸としたUndo機能のためのストローク群に対する一括筆圧情報付与手法の提案とその評価",
@@ -112,7 +144,11 @@
     "paper": "https://dl.nkmr-lab.org/papers/468/paper.pdf",
     "slide": "https://dl.nkmr-lab.org/papers/468",
     "code": "https://github.com/YutoSekiguchi/PP-Undo",
-    "system": "https://ppundo.nkmr.io"
+    "system": "https://ppundo.nkmr.io",
+    "award": "",
+    "review": false,
+    "publication_type": "Domestic Conference",
+    "citation": "関口 祐豊, 中村 聡史. PPUndo: 筆圧を軸としたUndo機能のためのストローク群に対する一括筆圧情報付与手法の提案とその評価, 情報処理学会 研究報告ヒューマンコンピュータインタラクション（HCI）, Vol.2023-HCI-204, No.14, pp.1-8, 2023."
   },
   {
     "title": "コミクエ: 漫画の内容のクイズ作成が既読巻の想起に与える影響",
@@ -125,7 +161,11 @@
     "tagList": ["HCI", "M1", "漫画", "クイズ", "https://comiqa.com"],
     "paper": "https://dl.nkmr-lab.org/papers/463/paper.pdf",
     "slide": "https://dl.nkmr-lab.org/papers/463",
-    "system": "https://comiqa.com"
+    "system": "https://comiqa.com",
+    "award": "",
+    "review": false,
+    "publication_type": "Domestic Conference",
+    "citation": "田中 佑芽, 関口 祐豊, 櫻井 翼, 小松原 達哉, 中村 聡史. コミクエ: 漫画の内容のクイズ作成が既読巻の想起に与える影響, 情報処理学会 研究報告ヒューマンコンピュータインタラクション（HCI）, Vol.2023-HCI-204, No.1, pp.1-8, 2023."
   },
   {
     "title": "Do People Tend to Select a Delayed Item?",
@@ -137,7 +177,11 @@
     "url": "https://dl.nkmr-lab.org/papers/450",
     "tagList": ["HCII", "M1", "選択", "ダークパターン"],
     "paper": "https://dl.nkmr-lab.org/papers/450/paper.pdf",
-    "slide": "https://dl.nkmr-lab.org/papers/450"
+    "slide": "https://dl.nkmr-lab.org/papers/450",
+    "award": "",
+    "review": true,
+    "publication_type": "International Conference",
+    "citation": "Yuichiro Kinoshita, Yuto Sekiguchi, Riho Ueki, Kouta Yokoyama, Satoshi Nakamura. Do People Tend to Select a Delayed Item?, International Conference on Human-Computer Interaction (HCII 2023), Vol.LNCS, volume 14012, pp.397-407, 2023."
   },
   {
     "title": "Does the Average Color Influence Selection?",
@@ -149,7 +193,11 @@
     "url": "https://dl.nkmr-lab.org/papers/452",
     "tagList": ["HCII", "M1", "選択", "色", "ゴルディロックス効果"],
     "paper": "https://dl.nkmr-lab.org/papers/452/paper.pdf",
-    "slide": "https://dl.nkmr-lab.org/papers/452"
+    "slide": "https://dl.nkmr-lab.org/papers/452",
+    "award": "",
+    "review": true,
+    "publication_type": "International Conference",
+    "citation": "Yuto Sekiguchi, Riho Ueki, Kouta Yokoyama, Satoshi Nakamura. Does the Average Color Influence Selection?, International Conference on Human-Computer Interaction (HCII 2023), Vol.LNCS, volume 14012, pp.485-496, 2023."
   },
   {
     "title": "選択肢の時間差表示が選択行動に及ぼす影響",
@@ -161,7 +209,11 @@
     "url": "https://dl.nkmr-lab.org/papers/458",
     "tagList": ["HCS", "M1", "選択", "ダークパターン"],
     "paper": "https://dl.nkmr-lab.org/papers/458/paper.pdf",
-    "slide": "https://dl.nkmr-lab.org/papers/458"
+    "slide": "https://dl.nkmr-lab.org/papers/458",
+    "award": "",
+    "review": false,
+    "publication_type": "Domestic Conference",
+    "citation": "木下 裕一朗, 関口 祐豊, 植木 里帆, 横山 幸大, 中村 聡史. 選択肢の時間差表示が選択行動に及ぼす影響, 信学技報 ヒューマンコミュニケーション基礎研究会（HCS）, 2023."
   },
   {
     "title": "PP-Undo: 筆圧の制御により付与されたストロークの確信度に基づくUndo/Redo手法の提案",
@@ -175,7 +227,11 @@
     "paper": "https://dl.nkmr-lab.org/papers/421/paper.pdf",
     "slide": "https://dl.nkmr-lab.org/papers/421",
     "code": "https://github.com/YutoSekiguchi/PP-Undo",
-    "system": "https://ppundo.nkmr.io"
+    "system": "https://ppundo.nkmr.io",
+    "award": "学生奨励賞",
+    "review": false,
+    "publication_type": "Domestic Conference",
+    "citation": "関口 祐豊, 植木 里帆, 中村 聡史. PP-Undo: 筆圧の制御により付与されたストロークの確信度に基づくUndo/Redo手法の提案, 研究報告ヒューマンコンピュータインタラクション（HCI）, Vol.2023-HCI-201, No.15, pp.1-8, 2023."
   },
   {
     "title": "デジタルペンの筆圧による濃淡表現の有無が筆算の正答率に及ぼす影響",
@@ -187,7 +243,11 @@
     "url": "https://dl.nkmr-lab.org/papers/415",
     "tagList": ["HCG", "B4", "手書き", "筆圧"],
     "paper": "https://dl.nkmr-lab.org/papers/415/paper.pdf",
-    "slide": "https://dl.nkmr-lab.org/papers/415"
+    "slide": "https://dl.nkmr-lab.org/papers/415",
+    "award": "",
+    "review": false,
+    "publication_type": "Domestic Conference",
+    "citation": "小林 沙利, 植木 里帆, 関口 祐豊, 中村 聡史, 掛 晃幸, 石丸 築. デジタルペンの筆圧による濃淡表現の有無が筆算の正答率に及ぼす影響, HCGシンポジウム2022, No.C-5-5, pp.1-8, 2022."
   },
   {
     "title": "選択インタフェースにおけるアイテムの遅延表示が選択に及ぼす影響",
@@ -199,7 +259,11 @@
     "url": "https://dl.nkmr-lab.org/papers/409",
     "tagList": ["HCI", "B4", "選択", "ダークパターン"],
     "paper": "https://dl.nkmr-lab.org/papers/409/paper.pdf",
-    "slide": "https://dl.nkmr-lab.org/papers/409"
+    "slide": "https://dl.nkmr-lab.org/papers/409",
+    "award": "",
+    "review": false,
+    "publication_type": "Domestic Conference",
+    "citation": "木下 裕一朗, 関口 祐豊, 植木 里帆, 横山 幸大, 中村 聡史. 選択インタフェースにおけるアイテムの遅延表示が選択に及ぼす影響, 情報処理学会 研究報告ヒューマンコンピュータインタラクション（HCI）, Vol.2022-HCI-200, No.27, pp.1-8, 2022."
   },
   {
     "title": "TRing: 休憩によるやる気低下を防ぐ行動支援システムの提案",
@@ -211,7 +275,11 @@
     "url": "https://ipsj.ixsq.nii.ac.jp/ej/index.php?active_action=repository_view_main_item_detail&page_id=13&block_id=8&item_id=217379&item_no=1",
     "tagList": ["GN", "B3", "休憩"],
     "paper": "https://ipsj.ixsq.nii.ac.jp/ej/?action=repository_uri&item_id=217379&file_id=1&file_no=1",
-    "code": "https://github.com/YutoSekiguchi/Tring"
+    "code": "https://github.com/YutoSekiguchi/Tring",
+    "award": "",
+    "review": false,
+    "publication_type": "Domestic Conference",
+    "citation": "守安 真也, 佐竹 雪乃, 関口 祐豊, 小林 稔. TRing: 休憩によるやる気低下を防ぐ行動支援システムの提案, 研究報告グループウェアとネットワークサービス（GN）, Vol.2022-GN-116, No.22, pp.1-7, 2022."
   },
   {
     "title": "三択の選択肢における色要因が選択行動に及ぼす影響",
@@ -223,7 +291,11 @@
     "url": "https://dl.nkmr-lab.org/papers/349",
     "tagList": ["HCI", "B3", "選択", "色", "ゴルディロックス効果"],
     "paper": "https://dl.nkmr-lab.org/papers/349/paper.pdf",
-    "slide": "https://dl.nkmr-lab.org/papers/349"
+    "slide": "https://dl.nkmr-lab.org/papers/349",
+    "award": "",
+    "review": false,
+    "publication_type": "Domestic Conference",
+    "citation": "関口 祐豊, 植木 里帆, 横山 幸大, 中村 聡史. 三択の選択肢の色の組み合わせが選択行動に及ぼす影響, 情報処理学会 研究報告ヒューマンコンピュータインタラクション（HCI）, Vol.2021-HCI-195, No.32, pp.1-8, 2021."
   },
   {
     "title": "コミクエ: 新刊読書時に前巻までの流れを想起可能とするクイズ共有手法の提案",
@@ -236,6 +308,10 @@
     "tagList": ["コミック工学", "B3", "漫画", "クイズ", "https://comiqa.com"],
     "paper": "https://dl.nkmr-lab.org/papers/345/paper.pdf",
     "slide": "https://dl.nkmr-lab.org/papers/345",
-    "system": "https://comiqa.com"
+    "system": "https://comiqa.com",
+    "award": "",
+    "review": false,
+    "publication_type": "Domestic Conference",
+    "citation": "野中 滉介, 関口 祐豊, 小松原 達哉, 桑原 樹蘭, 中村 聡史. コミクエ: 新刊読書時に前巻までの流れを想起可能とするクイズ共有手法の提案, 第6回 コミック工学研究会, pp.63-68, 2021."
   }
 ]
