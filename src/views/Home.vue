@@ -123,7 +123,7 @@ const removeSubstring = computed(() => (str: string, target: string) => {
   <!-- Profile Section (unchanged) -->
   <div class="top mb-6">
     <v-img aspect-ratio="1" width="300" src="@/assets/me.jpg" class="me-img" />
-    <v-col md="6" cols="12" sm="8">
+    <v-col md="4" cols="12" sm="8">
       <h1 class="el-title">Profile</h1>
       <p class="map-text">
         明治大学大学院 先端数理科学研究科 <br />
@@ -296,7 +296,6 @@ const removeSubstring = computed(() => (str: string, target: string) => {
 .me-img {
   max-width: 280px;
   border-radius: 5%;
-  margin-right: 0px;
   margin-top: 12px;
 }
 
