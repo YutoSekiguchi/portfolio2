@@ -10,8 +10,8 @@
     "tagList": ["インタラクション", "M2", "LLM", "プログラミング","大規模言語モデル", "GPT", "Processing", "プログラミング教育"],
     "paper": "https://dl.nkmr-lab.org/papers/559/paper.pdf",
     "slide": "",
-    "award": "",
-    "review": true,
+    "award": "プレミアム採択",
+    "review": false,
     "publication_type": "Domestic Conference Demonstration/Poster",
     "citation": "関口 祐豊, 中村 聡史. PP-Checker 1.5: LLMとの協働により標準出力を含むプログラムを評価する半自動採点システム, インタラクション2025, No.2A-14, pp.676-681, 2025."
   },
