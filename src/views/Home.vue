@@ -127,7 +127,7 @@ const removeSubstring = computed(() => (str: string, target: string) => {
       <h1 class="el-title">Profile</h1>
       <p class="map-text">
         明治大学大学院 先端数理科学研究科 <br />
-        先端メディアサイエンス専攻
+        先端メディアサイエンス専攻 博士後期課程
         <a class="link" href="https://nkmr-lab.org/">中村聡史研究室</a><br />
         Meiji University Graduate School of Advanced Mathematical Sciences
         <br />
@@ -218,6 +218,9 @@ const removeSubstring = computed(() => (str: string, target: string) => {
       <li>
         <p class="map-text">2023 HCI研究会学生奨励賞受賞</p>
       </li>
+      <li>
+        <p class="map-text">2025 明治大学校友会卒業生表彰 特別表彰受賞</p>
+      </li>
     </ul>
   </v-col>
 
@@ -262,7 +265,9 @@ const removeSubstring = computed(() => (str: string, target: string) => {
     <h5 class="el-title">Academic background</h5>
     <ul>
       <li>
-        <p class="map-text">2019 千葉県立佐倉高等学校卒業</p>
+        <p class="map-text">
+          2019 千葉県立佐倉高等学校卒業
+        </p>
       </li>
       <li>
         <p class="map-text">
@@ -271,7 +276,12 @@ const removeSubstring = computed(() => (str: string, target: string) => {
       </li>
       <li>
         <p class="map-text">
-          2024 明治大学大学院先端数理科学研究科先端メディアサイエンス専攻在学
+          2025 明治大学大学院先端数理科学研究科先端メディアサイエンス専攻修了
+        </p>
+      </li>
+      <li>
+        <p class="map-text">
+          現在 明治大学大学院先端数理科学研究科先端メディアサイエンス専攻 博士後期課程1年在学
         </p>
       </li>
     </ul>
