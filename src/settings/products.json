@@ -1,8 +1,15 @@
 [
   {
+    "title": "Lyricium",
+    "image": "img-p25",
+    "description": "Lyriciumは、化学で習う物質の色を覚えるためのシステムです。このシステムは、化学物質と色から歌詞やジャケットを自動生成し、他の人と曲を共有することができる音楽アプリです。",
+    "grade": "2025",
+    "tagList": ["Next.js", "TypeScript", "Python", "FastAPI", "MySQL", "Docker", "GPT", "Suno AI"]
+  },
+  {
     "title": "PP-Checker",
     "image": "img-p22",
-    "description": "プログラミング演習TA支援システムは、プログラミング演習のTAを支援するためのシステムです。このシステムは、学生の提出したプログラムをGPTが自動採点し、TAの仕事量を減らしてくれます。また、TAはプロンプトを適宜変更することをメインの作業にするといった新しいTAの在り方を提案するようなシステムです。",
+    "description": "PP-Checkerは、プログラミング演習のTAを支援するためのシステムです。このシステムは、学生の提出したプログラムをGPTが自動採点し、TAの仕事量を減らしてくれます。また、TAはプロンプトを適宜変更することをメインの作業にするといった新しいTAの在り方を提案するようなシステムです。",
     "grade": "2024",
     "tagList": ["Next.js", "TypeScript", "Python", "FastAPI", "MySQL", "Docker", "GPT"]
   },
