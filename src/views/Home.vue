@@ -134,26 +134,51 @@ const removeSubstring = computed(() => (str: string, target: string) => {
         Frontier Media Science Program
         <a class="link" href="https://nkmr-lab.org/">Nakamura Laboratory</a
         ><br /><br />
-        <span style="font-weight: bold">Keywords</span><br />
-        HCI、手書き、プログラミング教育、LLM<br />
-        HCI, handwriting, programming education, LLM<br /><br />
-        <span style="font-weight: bold">Academic Memberships</span><br />
+        <span style="font-weight: bold;">Keywords</span><br />
+        HCI, LLM, handwriting, programming education<br /><br />
+        <span style="font-weight: bold;">Academic Memberships</span><br />
         ・情報処理学会会員
+        <br />
+        ・ACM Student Membership
       </p>
     </v-col>
   </div>
+
+  <!-- Remaining sections (Certifications and Awards, Products, Academic background, Skills, Contact) remain unchanged -->
+  <v-col class="mx-auto" xl="6" md="8" cols="12">
+    <h5 class="el-title">Certifications and Awards
+    </h5>
+    <ul style="padding-left: 1rem; line-height: 1.3rem;">
+      <li>
+        <p class="map-text" style="font-size: 0.6rem;">2021 基本情報技術者試験（FE）合格</p>
+      </li>
+      <li>
+        <p class="map-text" style="font-size: 0.6rem;">2022 第10回学生スマートフォンアプリコンテスト奨励賞受賞
+        </p>
+      </li>
+      <li>
+        <p class="map-text" style="font-size: 0.6rem;">2023 HCI研究会学生奨励賞受賞</p>
+      </li>
+      <li>
+        <p class="map-text" style="font-size: 0.6rem;">2025 明治大学校友会卒業生表彰 特別表彰受賞</p>
+      </li>
+      <li>
+        <p class="map-text" style="font-size: 0.6rem;">2025 独立行政法人 情報処理推進機構(IPA) 未踏IT人材発掘・育成事業 採択</p>
+      </li>
+    </ul>
+  </v-col>
 
   <!-- Publication Section -->
   <v-col class="mx-auto" xl="6" md="8" cols="12">
     <h5 class="el-title">Publication</h5>
     <div v-for="category in mainCategories" :key="category" class="mb-8">
       <template v-if="category in filteredGroupedWorks">
-        <h2 style="border-left: 5px solid #999; padding-left: 8px;">{{ category }}</h2>
+        <h4 style="border-left: 5px solid #999; padding-left: 8px;">{{ category }}</h4>
         <div
           v-for="(subGroup, subGroupName) in filteredSubGroups(category)"
           :key="subGroupName"
         >
-          <h3 v-if="subGroupName !== 'Regular'">{{ removeSubstring(subGroupName.toString(), "Regular") }}</h3>
+          <h5 v-if="subGroupName !== 'Regular'">{{ removeSubstring(subGroupName.toString(), "Regular") }}</h5>
           <div
             v-for="(work, index) in subGroup"
             :key="`${category}-${subGroupName}-${index}`"
@@ -204,42 +229,22 @@ const removeSubstring = computed(() => (str: string, target: string) => {
     </div>
   </v-col>
 
-  <!-- Remaining sections (Certifications and Awards, Products, Academic background, Skills, Contact) remain unchanged -->
-  <v-col class="mx-auto" xl="6" md="8" cols="12">
-    <h5 class="el-title">Certifications and Awards</h5>
-    <ul>
-      <li>
-        <p class="map-text">2021 基本情報技術者試験（FE）合格</p>
-      </li>
-      <li>
-        <p class="map-text">2022 第10回学生スマートフォンアプリコンテスト奨励賞受賞
-        </p>
-      </li>
-      <li>
-        <p class="map-text">2023 HCI研究会学生奨励賞受賞</p>
-      </li>
-      <li>
-        <p class="map-text">2025 明治大学校友会卒業生表彰 特別表彰受賞</p>
-      </li>
-    </ul>
-  </v-col>
+  
 
   <v-col class="mx-auto" xl="6" md="8" cols="12">
     <h5 class="el-title">Products</h5>
-    <v-row
-      class="mx-auto justify-space-around work-row"
-      v-for="(product, index) in productsList"
-      :key="index"
-    >
-      <v-col sm="6" cols="12" class="my-auto">
+    <div class="product-slider">
+      <div
+        class="product-card"
+        v-for="(product, index) in productsList"
+        :key="index"
+      >
         <v-img
           class="mx-auto"
           width="250"
           aspect-ratio="1.7"
           :src="createPath(`products/${product.image}.png`)"
         />
-      </v-col>
-      <v-col cols="12" sm="6" class="my-auto">
         <p class="product-title" @click="handleClick(product.description, undefined)">
           {{ product.title }}
         </p>
@@ -252,18 +257,16 @@ const removeSubstring = computed(() => (str: string, target: string) => {
           </div>
           <div v-if="product.urlList" class="flex mr-2">
             <LinkIcon />
-            <a :href="product.urlList[0]" target="_blank" class="work-url"
-              >Link</a
-            >
+            <a :href="product.urlList[0]" target="_blank" class="work-url">Link</a>
           </div>
         </div>
-      </v-col>
-    </v-row>
+      </div>
+    </div>
   </v-col>
 
   <v-col class="mx-auto" xl="6" md="8" cols="12">
     <h5 class="el-title">Academic background</h5>
-    <ul>
+    <ul style="padding-left: 1rem;">
       <li>
         <p class="map-text">
           2019 千葉県立佐倉高等学校卒業
@@ -324,17 +327,17 @@ const removeSubstring = computed(() => (str: string, target: string) => {
   }
 }
 .el-title {
-  font-size: 2rem;
+  font-size: 1.2rem;
   font-weight: bold;
   margin-bottom: 5px;
 }
 .map-text {
   font-size: 0.8rem;
-  line-height: 1.4em;
+  line-height: 1.2em;
   word-break: break-word;
   white-space: pre-wrap;
   @media (min-width: 600px) {
-    line-height: 1.6em;
+    line-height: 1.3em;
   }
 }
 .link {
@@ -413,4 +416,30 @@ const removeSubstring = computed(() => (str: string, target: string) => {
   font-weight: bold;
   margin-left: 2px;
 }
+.product-slider {
+  display: flex;
+  overflow-x: auto;
+  gap: 24px;
+  padding: 16px 0;
+  scroll-snap-type: x mandatory;
+}
+
+.product-slider::-webkit-scrollbar {
+  height: 6px;
+}
+
+.product-slider::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 3px;
+}
+
+.product-card {
+  flex: 0 0 45%;
+  scroll-snap-align: start;
+  background: #fff;
+  border-radius: 8px;
+  padding: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
 </style>
+

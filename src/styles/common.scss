@@ -3,7 +3,7 @@ $default_color: #555;
   max-width: 1000px;
 }
 @mixin default_big_text {
-  font-size: 2rem;
+  font-size: 1.7rem;
   font-weight: bold;
 }
 @mixin overflow_text($line_num) {
@@ -16,6 +16,7 @@ $default_color: #555;
   overflow: auto;
   white-space: nowrap;
 }
+
 
 p, .icon, .tab {
   color: $default_color;
@@ -36,6 +37,7 @@ p, .icon, .tab {
 }
 
 .page-title {
+  font-family: 'Inter', sans-serif;
   font-size: 3rem;
   font-weight: lighter;
 }
