@@ -4,6 +4,8 @@ import Works from "../settings/works.json";
 import Products from "../settings/products.json";
 import { WorksType } from "@/settings/worksType";
 import { ProductsType } from "@/settings/productsType";
+import Experiences from "@/settings/experience.json";
+import { ExperienceType } from "@/settings/experienceType";
 import PaperIcon from "@/components/icon/Paper.vue";
 import SlideIcon from "@/components/icon/Slide.vue";
 import CodeIcon from "@/components/icon/Code.vue";
@@ -11,6 +13,7 @@ import LinkIcon from "@/components/icon/Link.vue";
 
 const worksList = ref<WorksType[]>(Works);
 const productsList = ref<ProductsType[]>(Products);
+const experienceList = ref<ExperienceType[]>(Experiences as ExperienceType[]);
 
 const description = ref<string | undefined>("");
 const dialogImage = ref<string | undefined>("");
@@ -79,7 +82,7 @@ const groupedWorksOrdered = computed(() => {
 
 const filteredGroupedWorks = computed(() => {
   return Object.fromEntries(
-    Object.entries(groupedWorksOrdered.value).filter(([_, subGroups]) =>
+    Object.entries(groupedWorksOrdered.value).filter(([, subGroups]) =>
       Object.values(subGroups).some((arr) => arr.length > 0)
     )
   );
@@ -88,7 +91,7 @@ const filteredGroupedWorks = computed(() => {
 const filteredSubGroups = computed(() => (category: string) => {
   return Object.fromEntries(
     Object.entries(groupedWorksOrdered.value[category]).filter(
-      ([_, arr]) => arr.length > 0
+      ([, arr]) => arr.length > 0
     )
   );
 });
@@ -99,6 +102,22 @@ const removeSubstring = computed(() => (str: string, target: string) => {
   }
   return str.split(target).join("");
 });
+
+const formatPeriod = (start?: string, end?: string) => {
+  const normalize = (s?: string) =>
+    s ? s.replaceAll("/", "-").replaceAll(".", "-") : undefined;
+  const toYm = (s?: string) => {
+    if (!s) return undefined;
+    const parts = s.split("-");
+    if (parts.length === 1) return parts[0];
+    if (parts.length >= 2) return `${parts[0]}.${parts[1]}`;
+    return s;
+  };
+  const s = toYm(normalize(start));
+  const isPresent = end && end.toLowerCase() === "present";
+  const e = isPresent ? "Present" : toYm(normalize(end));
+  return [s, e].filter(Boolean).join(" – ");
+};
 </script>
 
 <template>
@@ -260,6 +279,33 @@ const removeSubstring = computed(() => (str: string, target: string) => {
             <a :href="product.urlList[0]" target="_blank" class="work-url">Link</a>
           </div>
         </div>
+      </div>
+    </div>
+  </v-col>
+
+  <!-- Experoence sections -->
+  
+
+  
+  <v-col class="mx-auto" xl="6" md="8" cols="12">
+    <h5 class="el-title">Experience</h5>
+    <div v-for="(exp, idx) in experienceList" :key="idx" class="exp-item">
+      <div class="exp-main">
+        <span class="exp-title">
+          <template v-if="exp.url">
+            <a :href="exp.url" target="_blank" class="link">{{ exp.title }}</a>
+          </template>
+          <template v-else>{{ exp.title }}</template>
+        </span>
+        <span v-if="exp.organization" class="exp-org"> — {{ exp.organization }}</span>
+      </div>
+      <div class="exp-meta map-text">
+        <span v-if="exp.startDate || exp.endDate">{{ formatPeriod(exp.startDate, exp.endDate) }}</span>
+        <span v-if="exp.location"> · {{ exp.location }}</span>
+      </div>
+      <p v-if="exp.description" class="map-text exp-desc">{{ exp.description }}</p>
+      <div v-if="exp.tags && exp.tags.length" class="exp-tags">
+        <span class="exp-tag" v-for="(t, i) in exp.tags" :key="i">{{ t }}</span>
       </div>
     </div>
   </v-col>
@@ -440,6 +486,48 @@ const removeSubstring = computed(() => (str: string, target: string) => {
   border-radius: 8px;
   padding: 12px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+.exp-item {
+  padding: 8px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+.exp-main {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+.exp-title {
+  font-size: 0.8rem;
+  font-weight: normal;
+  color: #444;
+}
+.exp-org {
+  color: #666;
+  font-size: 0.75rem;
+  font-weight: normal;
+}
+.exp-meta {
+  color: #777;
+  font-size: 0.6rem;
+}
+.exp-desc {
+  margin-top: 4px;
+  font-size: 0.75rem;
+  color: #555;
+}
+.exp-tags {
+  margin-top: 4px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.exp-tag {
+  font-size: 0.55rem;
+  color: #666;
+  background: #f7f7f7;
+  padding: 2px 6px;
+  border-radius: 999px;
 }
 </style>
 

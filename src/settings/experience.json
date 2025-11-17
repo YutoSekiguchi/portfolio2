@@ -1,0 +1,84 @@
+[
+  {
+    "title": "明治大学総合数理学部 プログラミング演習Ⅰ TA",
+    "organization": "明治大学",
+    "location": "Tokyo, Japan",
+    "startDate": "2023-04",
+    "endDate": "2023-07",
+    "url": "",
+    "description": "",
+    "tags": ["TA", "プログラミング演習"]
+  },
+  {
+    "title": "明治大学総合数理学部 プログラミング演習Ⅱ TA",
+    "organization": "明治大学",
+    "location": "Tokyo, Japan",
+    "startDate": "2023-09",
+    "endDate": "2024-02",
+    "url": "",
+    "description": "",
+    "tags": ["TA", "プログラミング演習"]
+  },
+  {
+    "title": "明治大学総合数理学部 プログラミング演習Ⅰ TA",
+    "organization": "明治大学",
+    "location": "Tokyo, Japan",
+    "startDate": "2024-04",
+    "endDate": "2024-07",
+    "url": "",
+    "description": "",
+    "tags": ["TA", "プログラミング演習"]
+  },
+  {
+    "title": "明治大学総合数理学部 プログラミング演習Ⅱ TA",
+    "organization": "明治大学",
+    "location": "Tokyo, Japan",
+    "startDate": "2024-09",
+    "endDate": "2025-02",
+    "url": "",
+    "description": "",
+    "tags": ["TA", "プログラミング演習"]
+  },
+  {
+    "title": "ソフトウェアエンジニアリングシンポジウム（SES）2025 ワークショップ",
+    "organization": "SES2025",
+    "location": "Tokyo, Japan",
+    "startDate": "2025-09",
+    "endDate": "",
+    "url": "https://ses.sigse.jp/2025/sponsor-event.html#e1",
+    "description": "ソフトウェアエンジニアリングシンポジウム（SES）2025 ワークショップにて，PP-Checkerの紹介を行いました．",
+    "tags": ["SES", "ワークショップ", "PP-Checker"]
+  },
+  {
+    "title": "明治大学総合数理学部 RA",
+    "organization": "明治大学",
+    "location": "Tokyo, Japan",
+    "startDate": "2025-04",
+    "endDate": "Present",
+    "url": "",
+    "description": "",
+    "tags": ["RA"]
+  },
+  {
+    "title": "独立行政法人 情報処理推進機構（IPA） 未踏IT人材育成事業",
+    "organization": "独立行政法人 情報処理推進機構（IPA）",
+    "location": "Tokyo, Japan",
+    "startDate": "2025-06",
+    "endDate": "Present",
+    "url": "https://www.ipa.go.jp/jinzai/mitou/it/2025/gaiyou-tk-3.html",
+    "description": "",
+    "tags": ["未踏"]
+  },
+  {
+    "title": "SB Intuitions インターンシップ",
+    "organization": "SB Intuitions",
+    "location": "Tokyo, Japan",
+    "startDate": "2025-07",
+    "endDate": "Present",
+    "url": "",
+    "description": "",
+    "tags": ["インターンシップ"]
+  }
+]
+
+
