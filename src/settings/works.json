@@ -1,5 +1,37 @@
 [
   {
+    "title": "PP-Checker: LLMと協働する曖昧性を許容した自動採点システム",
+    "image": "img-15",
+    "description": "",
+    "authors": "関口祐豊, 中村聡史",
+    "conference": "日本ソフトウェア科学会，コンピュータソフトウェア",
+    "date": "2025/02/01",
+    "url": "https://dl.nkmr-lab.org/papers/554",
+    "tagList": ["D1", "LLM", "自動採点", "プログラミング教育"],
+    "paper": "",
+    "slide": "",
+    "award": "",
+    "review": true,
+    "publication_type": "Journal",
+    "citation": "関口 祐豊, 中村 聡史. PP-Checker: LLMと協働する曖昧性を許容した自動採点システム, 日本ソフトウェア科学会, コンピュータソフトウェア（採択済）"
+  },
+  {
+    "title": "Does Representing Pen Pressure Improve Handwritten Calculation Accuracy?",
+    "image": "img-19",
+    "description": "With the digitization of education, opportunities for handwritten input using tablets and other digital devices have increased. However, the impact of digital handwriting on problem-solving performance and its contributing factors remains unclear. This study focuses on pen pressure, a fundamental element of handwriting, and investigates how pressure sensitivity affects arithmetic problem-solving. We hypothesized that allowing users to vary stroke darkness through pen pressure would enhance accuracy. To test this, we conducted an experiment comparing a pressure-sensitive condition, where pen pressure affected stroke darkness, and a non-pressure-sensitive condition, where stroke darkness was uniform. University students solved arithmetic problems involving addition, subtraction, multiplication, and division. The results showed no significant difference in accuracy for addition, subtraction, or multiplication, but significantly higher accuracy in division problems under the pressure-sensitive condition. Pen pressure analysis also revealed differences in value distribution between conditions. Furthermore, error analysis suggested that the inability to modulate stroke darkness might lead to misinterpretation of auxiliary digits or other handwritten calculation marks during complex tasks. These findings indicate that pen pressure sensitivity may support more effective problem-solving in arithmetic tasks that involve complex, multi-step reasoning, by improving the visual clarity of handwritten information.",
+    "authors": "Sari Kobayashi, Yuto Sekiguchi, Riho Ueki, Satoshi Nakamura, Akiyuki Kake",
+    "conference": "KES2025 in Japan",
+    "date": "2025/09/10",
+    "url": "https://dl.nkmr-lab.org/papers/597",
+    "tagList": ["KES", "D1", "手書き", "筆圧", "計算"],
+    "paper": "https://dl.nkmr-lab.org/papers/597/paper.pdf",
+    "slide": "",
+    "award": "",
+    "review": true,
+    "publication_type": "International Conference",
+    "citation": "Sari Kobayashi, Yuto Sekiguchi, Riho Ueki, Satoshi Nakamura, Akiyuki Kake. Does Representing Pen Pressure Improve Handwritten Calculation Accuracy?, 29th International Conference on Knowledge-Based and Intelligent Information & Engineering Systems (KES2025), 2025."
+  },
+  {
     "title": "PP-Checker 1.5: LLMとの協働により標準出力を含むプログラムを評価する半自動採点システム",
     "image": "img-18",
     "description": "本稿では，標準出力を含むプログラミング課題における採点精度向上を目的とし，従来の半自動採点システムPP-Checkerを拡張する手法を検討した．この手法では，プログラムの構文の評価に加えて，ランダム性や動的要素を含む標準出力結果を大規模言語モデル（LLM）へのプロンプトとして組み込むことで，多様な課題への対応力を強化した．提案手法をプログラミング演習講義における13個の課題で検証した結果，従来手法に比べて採点精度が向上する傾向にあることが確認された．さらに，この結果をもとに，提案手法を統合したPP-Checker1.5を講義内で運用し，ユーザの負荷にならず，精度向上につながることを確認した．",
