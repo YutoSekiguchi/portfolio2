@@ -330,7 +330,7 @@ const formatPeriod = (start?: string, end?: string) => {
       </li>
       <li>
         <p class="map-text">
-          現在 明治大学大学院先端数理科学研究科先端メディアサイエンス専攻 博士後期課程1年在学
+          現在 明治大学大学院先端数理科学研究科先端メディアサイエンス専攻 博士後期課程2年在学
         </p>
       </li>
     </ul>
