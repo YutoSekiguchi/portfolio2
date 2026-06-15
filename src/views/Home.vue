@@ -184,6 +184,9 @@ const formatPeriod = (start?: string, end?: string) => {
       <li>
         <p class="map-text" style="font-size: 0.6rem;">2025 独立行政法人 情報処理推進機構(IPA) 未踏IT人材発掘・育成事業 採択</p>
       </li>
+      <li>
+        <p class="map-text" style="font-size: 0.6rem;">2026 独立行政法人 情報処理推進機構（IPA）2025年度未踏IT人材発掘・育成事業 スーパークリエータ認定</p>
+      </li>
     </ul>
   </v-col>
 
