@@ -6,10 +6,13 @@
   import Chip from '@/components/common/Chip.vue';
   import Products from '../settings/products.json';
   import { ProductsType } from '@/settings/productsType';
-  import { ref } from 'vue';
+  import { computed, ref } from 'vue';
   import { useTagsStore } from '@/store/tags';
+  import { useLocale } from '@/i18n';
+  import { localizeProducts } from '@/i18n/content';
 
   const productsStore = useTagsStore();
+  const { locale, copy } = useLocale();
 
   const isDialog = ref<boolean>(false);
   const num = ref<number>(0);
@@ -22,7 +25,10 @@
   const closeDialog = () => {
     isDialog.value = false;
   }
-  const productsList = ref<ProductsType[]>(Products);
+  const sourceProductsList = ref<ProductsType[]>(Products as ProductsType[]);
+  const productsList = computed(() =>
+    localizeProducts(sourceProductsList.value, locale.value)
+  );
 
   const childComponent = ref();
   // 記事のタグクリック時の動作
@@ -31,12 +37,12 @@
   }
   
   const showAllProducts = () => {
-    productsList.value = Products;
+    sourceProductsList.value = Products as ProductsType[];
   }
 
   const showSearchProducts = (nowTag: string[]) => {
     productsStore.getProducts(nowTag);
-    productsList.value = productsStore.products;
+    sourceProductsList.value = productsStore.products;
   }
   
   const createPath =  (name: string) => {
@@ -52,7 +58,7 @@
   />
   <div class="products-main mx-auto">
     <v-row class="products-main-header mx-auto">
-      <PageTitle title="Products" />
+      <PageTitle :title="copy.sections.products" />
       <SearchBar
         ref="childComponent"
         :data="Products"
@@ -71,6 +77,7 @@
           <ArticleImage
             :height="150"
             :path="createPath(`products/${product.image}.png`)"
+            :alt="product.title"
             style="cursor: pointer;"
             @click="openDialog(i)"
           />
@@ -100,7 +107,7 @@
             @click="openDialog(i)"
           >
             <v-icon icon="mdi-open-in-new" class="icon mr-1" />
-            <p>詳細へ</p>
+            <p>{{ copy.common.details }}</p>
           </v-btn>
         </v-col>
         

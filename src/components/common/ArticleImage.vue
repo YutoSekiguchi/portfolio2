@@ -3,6 +3,7 @@
 
   export interface Props {
     path: string;
+    alt?: string;
     width?: number;
     height?: number;
   }
@@ -15,6 +16,7 @@
     :width="`${props.width? props.width: 500}`"
     :height="`${props.height? props.height: 300}`"
     :src="props.path"
+    :alt="props.alt || ''"
     class="mx-auto"
   />
 </template>

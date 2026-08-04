@@ -3,15 +3,19 @@
   import { ProductsType } from '@/settings/productsType';
   import { WorksType } from '@/settings/worksType';
   import Chip from '@/components/common/Chip.vue';
+  import { useLocale } from '@/i18n';
+  import { localizeTag } from '@/i18n/content';
 
-  export interface Props {
+  const { locale, copy } = useLocale();
+
+  interface Props {
     data: ProductsType[] | WorksType[];
     showAll: () => void;
     showSearch: (nowTag: string[]) => void;
   }
   const props = defineProps<Props>();
   // 配列の要素の順番を入れ替える関数
-  const shuffleArray = (array: string[]) => {
+  const shuffleArray = <T,>(array: T[]) => {
     const cloneArray = [...array]
     for (let i = cloneArray.length - 1; i >= 0; i--) {
       let rand = Math.floor(Math.random() * (i + 1))
@@ -22,7 +26,7 @@
     return cloneArray
   }
   // 全てのタグのリストをランダムな順で保持
-  const allTagList = computed(() => {
+  const allTags = computed(() => {
     const res: string[] = [];
     props.data.map((el) => {
       el.tagList?.map((tag) => {
@@ -31,6 +35,13 @@
     })
     return shuffleArray(res);
   })
+
+  const allTagList = computed(() =>
+    allTags.value.map((tag) => ({
+      title: localizeTag(tag, locale.value),
+      value: tag,
+    }))
+  )
 
   const inputedTag = ref<string[]>([]);
 
@@ -49,7 +60,7 @@
   })
   
   defineExpose({
-    clickTag
+    clickTag,
   });
 </script>
 
@@ -57,8 +68,9 @@
   <v-col class="py-0">
     <v-autocomplete
       v-model="inputedTag"
-      label="Select"
+      :label="copy.common.selectTags"
       :items="allTagList"
+      :no-data-text="copy.common.noResults"
       multiple
       clearable
       variant="underlined"

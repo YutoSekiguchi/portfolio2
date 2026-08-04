@@ -10,20 +10,56 @@ import PaperIcon from "@/components/icon/Paper.vue";
 import SlideIcon from "@/components/icon/Slide.vue";
 import CodeIcon from "@/components/icon/Code.vue";
 import LinkIcon from "@/components/icon/Link.vue";
+import { useLocale } from '@/i18n';
+import {
+  localizeAward,
+  localizeExperiences,
+  localizeProducts,
+} from '@/i18n/content';
 
-const worksList = ref<WorksType[]>(Works);
-const productsList = ref<ProductsType[]>(Products);
-const experienceList = ref<ExperienceType[]>(Experiences as ExperienceType[]);
+const { locale, copy } = useLocale();
 
-const description = ref<string | undefined>("");
-const dialogImage = ref<string | undefined>("");
+const worksList = ref<WorksType[]>(Works as WorksType[]);
+const productsList = computed(() =>
+  localizeProducts(Products as ProductsType[], locale.value)
+);
+const experienceList = computed(() =>
+  localizeExperiences(Experiences as ExperienceType[], locale.value)
+);
+
+type DialogSelection =
+  | { kind: 'work'; image?: string; date?: string }
+  | { kind: 'product'; image: string };
+
+const dialogSelection = ref<DialogSelection | null>(null);
 const dialog = ref<boolean>(false);
 
-const handleClick = (desc: string | undefined, imgFileName: string | undefined) => {
-  description.value = desc;
-  dialogImage.value = imgFileName;
+const dialogContent = computed(() => {
+  const selection = dialogSelection.value;
+  if (!selection) return undefined;
+  if (selection.kind === 'work') {
+    return worksList.value.find(
+      (work) => work.image === selection.image && work.date === selection.date
+    );
+  }
+  return productsList.value.find(
+    (product) => product.image === selection.image
+  );
+});
+
+const openWorkDialog = (work: WorksType) => {
+  dialogSelection.value = { kind: 'work', image: work.image, date: work.date };
   dialog.value = true;
 };
+
+const openProductDialog = (product: ProductsType) => {
+  dialogSelection.value = { kind: 'product', image: product.image };
+  dialog.value = true;
+};
+
+const dialogImage = computed(() =>
+  dialogSelection.value?.kind === 'work' ? dialogSelection.value.image : undefined
+);
 
 const createPath = (name: string) => {
   return new URL(`../assets/${name}`, import.meta.url).href;
@@ -96,12 +132,28 @@ const filteredSubGroups = computed(() => (category: string) => {
   );
 });
 
-const removeSubstring = computed(() => (str: string, target: string) => {
-  if (str.includes("Demonstration/Poster")) {
-    return "Demonstration/Poster";
+const getCategoryLabel = (category: string) => {
+  const labels: Record<string, string> = {
+    Journal: copy.value.publicationCategories.journal,
+    'International Conference': copy.value.publicationCategories.internationalConference,
+    'Domestic Conference': copy.value.publicationCategories.domesticConference,
+  };
+  return labels[category] || category;
+};
+
+const getSubGroupLabel = (subGroup: string) => {
+  if (subGroup === 'Demonstration/Poster') {
+    return copy.value.publicationCategories.demonstrationPoster;
   }
-  return str.split(target).join("");
-});
+
+  const reviewLabel = subGroup.startsWith('Non-Peer-Reviewed')
+    ? copy.value.publicationCategories.nonPeerReviewed
+    : copy.value.publicationCategories.peerReviewed;
+  const typeLabel = subGroup.includes('Demonstration/Poster')
+    ? copy.value.publicationCategories.demonstrationPoster
+    : '';
+  return [reviewLabel, typeLabel].filter(Boolean).join(' · ');
+};
 
 const formatPeriod = (start?: string, end?: string) => {
   const normalize = (s?: string) =>
@@ -115,136 +167,144 @@ const formatPeriod = (start?: string, end?: string) => {
   };
   const s = toYm(normalize(start));
   const isPresent = end && end.toLowerCase() === "present";
-  const e = isPresent ? "Present" : toYm(normalize(end));
+  const e = isPresent ? copy.value.common.present : toYm(normalize(end));
   return [s, e].filter(Boolean).join(" – ");
 };
+
+const formatProductYear = (year: string) =>
+  locale.value === 'ja' ? `${year}${copy.value.common.yearSuffix}` : year;
 </script>
 
 <template>
   <v-dialog v-if="dialog" v-model="dialog" width="500">
     <v-card>
-      <v-card-title class="headline">Abstract</v-card-title>
+      <v-card-title class="headline">{{ copy.common.abstract }}</v-card-title>
       <v-img
           class="mx-auto"
           v-if="dialogImage"
           width="600"
           aspect-ratio="1.7"
           :src="createPath(`works/${dialogImage}.png`)"
+          :alt="dialogContent?.title || ''"
         />
-      <p class="map-text px-4">{{ description }}</p>
+      <p class="map-text px-4">{{ dialogContent?.description }}</p>
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn color="black darken-1" text @click="dialog = false">Close</v-btn>
+        <v-btn color="black darken-1" text @click="dialog = false">
+          {{ copy.common.close }}
+        </v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
 
-  <!-- Profile Section (unchanged) -->
   <div class="top mb-6">
-    <v-img aspect-ratio="1" width="300" src="@/assets/me.jpg" class="me-img" />
+    <v-img
+      aspect-ratio="1"
+      width="300"
+      src="@/assets/me.jpg"
+      :alt="copy.about.nameValue"
+      class="me-img"
+    />
     <v-col md="4" cols="12" sm="8">
-      <h1 class="el-title">Profile</h1>
+      <h1 class="el-title">{{ copy.sections.profile }}</h1>
       <p class="map-text">
-        明治大学大学院 先端数理科学研究科 <br />
-        先端メディアサイエンス専攻 博士後期課程
-        <a class="link" href="https://nkmr-lab.org/">中村聡史研究室</a><br />
-        Meiji University Graduate School of Advanced Mathematical Sciences
-        <br />
-        Frontier Media Science Program
-        <a class="link" href="https://nkmr-lab.org/">Nakamura Laboratory</a
-        ><br /><br />
-        <span style="font-weight: bold;">Keywords</span><br />
-        HCI, LLM, handwriting, programming education<br /><br />
-        <span style="font-weight: bold;">Academic Memberships</span><br />
-        ・情報処理学会会員
-        <br />
-        ・ACM Student Membership
+        {{ copy.profile.affiliation }}<br />
+        <a
+          class="link"
+          href="https://nkmr-lab.org/"
+          rel="noopener noreferrer"
+          target="_blank"
+        >{{ copy.profile.laboratory }}</a><br /><br />
+        <span style="font-weight: bold;">{{ copy.profile.keywords }}</span><br />
+        {{ copy.profile.keywordList }}<br /><br />
+        <span style="font-weight: bold;">{{ copy.profile.memberships }}</span><br />
+        <template v-for="membership in copy.profile.membershipList" :key="membership">
+          • {{ membership }}<br />
+        </template>
       </p>
     </v-col>
   </div>
 
-  <!-- Remaining sections (Certifications and Awards, Products, Academic background, Skills, Contact) remain unchanged -->
   <v-col class="mx-auto" xl="6" md="8" cols="12">
-    <h5 class="el-title">Certifications and Awards
-    </h5>
+    <h5 class="el-title">{{ copy.sections.certificationsAndAwards }}</h5>
     <ul style="padding-left: 1rem; line-height: 1.3rem;">
-      <li>
-        <p class="map-text" style="font-size: 0.6rem;">2021 基本情報技術者試験（FE）合格</p>
-      </li>
-      <li>
-        <p class="map-text" style="font-size: 0.6rem;">2022 第10回学生スマートフォンアプリコンテスト奨励賞受賞
-        </p>
-      </li>
-      <li>
-        <p class="map-text" style="font-size: 0.6rem;">2023 HCI研究会学生奨励賞受賞</p>
-      </li>
-      <li>
-        <p class="map-text" style="font-size: 0.6rem;">2025 明治大学校友会卒業生表彰 特別表彰受賞</p>
-      </li>
-      <li>
-        <p class="map-text" style="font-size: 0.6rem;">2025 独立行政法人 情報処理推進機構(IPA) 未踏IT人材発掘・育成事業 採択</p>
-      </li>
-      <li>
-        <p class="map-text" style="font-size: 0.6rem;">2026 独立行政法人 情報処理推進機構（IPA）2025年度未踏IT人材発掘・育成事業 スーパークリエータ認定</p>
-      </li>
-      <li>
-        <p class="map-text" style="font-size: 0.6rem;">2026 明治大学 若手研究 研究費 採択</p>
+      <li v-for="award in copy.awards" :key="award">
+        <p class="map-text" style="font-size: 0.6rem;">{{ award }}</p>
       </li>
     </ul>
   </v-col>
 
   <!-- Publication Section -->
   <v-col class="mx-auto" xl="6" md="8" cols="12">
-    <h5 class="el-title">Publication</h5>
+    <h5 class="el-title">{{ copy.sections.publications }}</h5>
     <div v-for="category in mainCategories" :key="category" class="mb-8">
       <template v-if="category in filteredGroupedWorks">
-        <h4 style="border-left: 5px solid #999; padding-left: 8px;">{{ category }}</h4>
+        <h4 style="border-left: 5px solid #999; padding-left: 8px;">
+          {{ getCategoryLabel(category) }}
+        </h4>
         <div
           v-for="(subGroup, subGroupName) in filteredSubGroups(category)"
           :key="subGroupName"
         >
-          <h5 v-if="subGroupName !== 'Regular'">{{ removeSubstring(subGroupName.toString(), "Regular") }}</h5>
+          <h5 v-if="subGroupName !== 'Regular'">
+            {{ getSubGroupLabel(subGroupName.toString()) }}
+          </h5>
           <div
             v-for="(work, index) in subGroup"
             :key="`${category}-${subGroupName}-${index}`"
             class="pub-item"
           >
             <div class="pub-main">
-              <!-- <span class="pub-index">
-                {{ index + 1 }}.
-              </span> -->
-              <span class="pub-title" @click="handleClick(work.description, work.image)">{{ index + 1 }}.&nbsp;{{ work.citation }}
+              <button
+                type="button"
+                class="pub-title pub-title-button"
+                @click="openWorkDialog(work)"
+              >
+                {{ index + 1 }}.&nbsp;{{ work.citation }}
                 <span class="pub-award" v-if="work.award !== ''">
-                【{{ work.award }}】
-              </span>
-              </span>
-              
-              <!-- <span class="pub-title" @click="handleClick(work.description, work.image)">{{
-                work.title
-              }}</span>
-              <span class="pub-detail">
-                — {{ work.authors }} — {{ work.conference }}</span
-              > -->
+                  【{{ localizeAward(work.award, locale) }}】
+                </span>
+              </button>
             </div>
             <div class="pub-icons">
               <span v-if="work.paper">
-                <a :href="work.paper" target="_blank">
-                  <PaperIcon class="pub-icon" />
+                <a
+                  :href="work.paper"
+                  :aria-label="`${copy.common.openPaper}: ${work.title}`"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <PaperIcon class="pub-icon" aria-hidden="true" />
                 </a>
               </span>
               <span v-if="work.slide">
-                <a :href="work.slide" target="_blank">
-                  <SlideIcon class="pub-icon" />
+                <a
+                  :href="work.slide"
+                  :aria-label="`${copy.common.openSlides}: ${work.title}`"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <SlideIcon class="pub-icon" aria-hidden="true" />
                 </a>
               </span>
               <span v-if="work.code">
-                <a :href="work.code" target="_blank">
-                  <CodeIcon class="pub-icon" />
+                <a
+                  :href="work.code"
+                  :aria-label="`${copy.common.openCode}: ${work.title}`"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <CodeIcon class="pub-icon" aria-hidden="true" />
                 </a>
               </span>
               <span v-if="work.system">
-                <a :href="work.system" target="_blank">
-                  <LinkIcon class="pub-icon" />
+                <a
+                  :href="work.system"
+                  :aria-label="`${copy.common.openSystem}: ${work.title}`"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <LinkIcon class="pub-icon" aria-hidden="true" />
                 </a>
               </span>
             </div>
@@ -257,7 +317,7 @@ const formatPeriod = (start?: string, end?: string) => {
   
 
   <v-col class="mx-auto" xl="6" md="8" cols="12">
-    <h5 class="el-title">Products</h5>
+    <h5 class="el-title">{{ copy.sections.products }}</h5>
     <div class="product-slider">
       <div
         class="product-card"
@@ -269,37 +329,42 @@ const formatPeriod = (start?: string, end?: string) => {
           width="250"
           aspect-ratio="1.7"
           :src="createPath(`products/${product.image}.png`)"
+          :alt="product.title"
         />
-        <p class="product-title" @click="handleClick(product.description, undefined)">
+        <button
+          type="button"
+          class="product-title product-title-button"
+          @click="openProductDialog(product)"
+        >
           {{ product.title }}
-        </p>
+        </button>
         <p class="work-authors map-text">{{ product.tagList.join(", ") }}</p>
-        <p class="work-conference map-text">{{ product.grade }}年</p>
+        <p class="work-conference map-text">{{ formatProductYear(product.grade) }}</p>
         <div class="flex">
           <div v-if="product.code" class="flex mr-2">
             <CodeIcon />
-            <a :href="product.code" target="_blank" class="work-url">Code</a>
+            <a :href="product.code" target="_blank" rel="noopener noreferrer" class="work-url">
+              {{ copy.common.code }}
+            </a>
           </div>
           <div v-if="product.urlList" class="flex mr-2">
             <LinkIcon />
-            <a :href="product.urlList[0]" target="_blank" class="work-url">Link</a>
+            <a :href="product.urlList[0]" target="_blank" rel="noopener noreferrer" class="work-url">
+              {{ copy.common.link }}
+            </a>
           </div>
         </div>
       </div>
     </div>
   </v-col>
 
-  <!-- Experoence sections -->
-  
-
-  
   <v-col class="mx-auto" xl="6" md="8" cols="12">
-    <h5 class="el-title">Experience</h5>
+    <h5 class="el-title">{{ copy.sections.experience }}</h5>
     <div v-for="(exp, idx) in experienceList" :key="idx" class="exp-item">
       <div class="exp-main">
         <span class="exp-title">
           <template v-if="exp.url">
-            <a :href="exp.url" target="_blank" class="link">{{ exp.title }}</a>
+            <a :href="exp.url" target="_blank" rel="noopener noreferrer" class="link">{{ exp.title }}</a>
           </template>
           <template v-else>{{ exp.title }}</template>
         </span>
@@ -317,33 +382,16 @@ const formatPeriod = (start?: string, end?: string) => {
   </v-col>
 
   <v-col class="mx-auto" xl="6" md="8" cols="12">
-    <h5 class="el-title">Academic background</h5>
+    <h5 class="el-title">{{ copy.sections.academicBackground }}</h5>
     <ul style="padding-left: 1rem;">
-      <li>
-        <p class="map-text">
-          2019 千葉県立佐倉高等学校卒業
-        </p>
-      </li>
-      <li>
-        <p class="map-text">
-          2023 明治大学総合数理学部先端メディアサイエンス学科卒業
-        </p>
-      </li>
-      <li>
-        <p class="map-text">
-          2025 明治大学大学院先端数理科学研究科先端メディアサイエンス専攻修了
-        </p>
-      </li>
-      <li>
-        <p class="map-text">
-          現在 明治大学大学院先端数理科学研究科先端メディアサイエンス専攻 博士後期課程2年在学
-        </p>
+      <li v-for="education in copy.education" :key="education">
+        <p class="map-text">{{ education }}</p>
       </li>
     </ul>
   </v-col>
 
   <v-col class="mx-auto mb-4" xl="6" md="8" cols="12">
-    <h5 class="el-title">Skills</h5>
+    <h5 class="el-title">{{ copy.sections.skills }}</h5>
     <p class="map-text">
       React/Next.js, Vue/Nuxt.js, TypeScript, Python, Golang, Flutter, PHP, GAS,
       Node.js, Processing, MATLAB, Spring Boot, Docker
@@ -351,8 +399,8 @@ const formatPeriod = (start?: string, end?: string) => {
   </v-col>
 
   <v-col class="mx-auto" xl="6" md="8" cols="12">
-    <h5 class="el-title">Contact</h5>
-    <p class="map-text">Email: yuutosekiguchi[at]gmail.com</p>
+    <h5 class="el-title">{{ copy.sections.contact }}</h5>
+    <p class="map-text">{{ copy.common.email }}: yuutosekiguchi[at]gmail.com</p>
   </v-col>
 </template>
 
@@ -428,6 +476,20 @@ const formatPeriod = (start?: string, end?: string) => {
   margin-right: 8px;
   /* text-decoration: underline; */
 }
+.pub-title-button,
+.product-title-button {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  font-family: inherit;
+  padding: 0;
+  text-align: left;
+}
+.pub-title-button:focus-visible,
+.product-title-button:focus-visible {
+  outline: 2px solid #555;
+  outline-offset: 2px;
+}
 .pub-title:hover {
   color: #888;
 }
@@ -448,7 +510,9 @@ const formatPeriod = (start?: string, end?: string) => {
   color: #424242;
 }
 .product-title {
+  color: #333;
   cursor: pointer;
+  display: block;
   font-size: 0.9rem;
   font-weight: bold;
 }
@@ -536,4 +600,3 @@ const formatPeriod = (start?: string, end?: string) => {
   border-radius: 999px;
 }
 </style>
-

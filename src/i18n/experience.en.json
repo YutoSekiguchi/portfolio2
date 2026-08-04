@@ -1,0 +1,56 @@
+[
+  {
+    "title": "Teaching Assistant for Programming Practice I, School of Interdisciplinary Mathematical Sciences, Meiji University",
+    "organization": "Meiji University",
+    "description": "",
+    "tags": ["TA", "Programming Practice"]
+  },
+  {
+    "title": "Teaching Assistant for Programming Practice II, School of Interdisciplinary Mathematical Sciences, Meiji University",
+    "organization": "Meiji University",
+    "description": "",
+    "tags": ["TA", "Programming Practice"]
+  },
+  {
+    "title": "Teaching Assistant for Programming Practice I, School of Interdisciplinary Mathematical Sciences, Meiji University",
+    "organization": "Meiji University",
+    "description": "",
+    "tags": ["TA", "Programming Practice"]
+  },
+  {
+    "title": "Teaching Assistant for Programming Practice II, School of Interdisciplinary Mathematical Sciences, Meiji University",
+    "organization": "Meiji University",
+    "description": "",
+    "tags": ["TA", "Programming Practice"]
+  },
+  {
+    "title": "Software Engineering Symposium (SES) 2025 Workshop",
+    "organization": "SES 2025",
+    "description": "Presented PP-Checker at the Software Engineering Symposium (SES) 2025 workshop.",
+    "tags": ["SES", "Workshop", "PP-Checker"]
+  },
+  {
+    "title": "Research Assistant, School of Interdisciplinary Mathematical Sciences, Meiji University",
+    "organization": "Meiji University",
+    "description": "",
+    "tags": ["RA"]
+  },
+  {
+    "title": "MITOU IT Talent Scout and Development Project, Innovation Platform Agency (IPA)",
+    "organization": "Innovation Platform Agency (IPA)",
+    "description": "",
+    "tags": ["MITOU"]
+  },
+  {
+    "title": "Internship at SB Intuitions",
+    "organization": "SB Intuitions",
+    "description": "",
+    "tags": ["Internship"]
+  },
+  {
+    "title": "Assistant, School of Interdisciplinary Mathematical Sciences, Meiji University",
+    "organization": "Meiji University",
+    "description": "",
+    "tags": ["Assistant"]
+  }
+]

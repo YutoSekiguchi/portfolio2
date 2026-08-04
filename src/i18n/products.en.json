@@ -1,0 +1,102 @@
+{
+  "img-p25": {
+    "title": "Lyricium",
+    "description": "Lyricium is a system designed to help users memorize the colors of substances studied in chemistry. It is a music app that automatically generates lyrics and cover art from a chemical substance and its color, then lets users share the resulting songs with others."
+  },
+  "img-p22": {
+    "title": "PP-Checker",
+    "description": "PP-Checker is a system that supports teaching assistants in programming courses. GPT automatically grades programs submitted by students, reducing the TAs' workload. It also proposes a new approach to the TA role in which the primary task is to refine the grading prompts as needed."
+  },
+  "img-p21": {
+    "title": "Photravel",
+    "description": "This system invites travelers to take and upload photos that match an assigned theme, then uses GPT to score the photos. It is intended to give people more opportunities and motivation to take pictures while traveling."
+  },
+  "img-p20": {
+    "title": "Portfolio ver. 2024",
+    "description": "This is the portfolio you are viewing now. It was designed with simplicity as the top priority."
+  },
+  "img-p19": {
+    "title": "PP-Undo+",
+    "description": "PP-Undo (Pen Pressure Undo)+ improves on the original PP-Undo, an application that uses pen pressure as an axis for undo operations in digital handwriting. The enhanced version offers better usability and adds a pen-pressure-based eraser."
+  },
+  "img-p24": {
+    "title": "PP-Undo Researcher (GPT)",
+    "description": "This is a custom GPT trained on PP-Undo, my own research project."
+  },
+  "img-p18": {
+    "title": "Otoko-gi Payment Tracker",
+    "description": "There are two common ways to handle expenses while traveling: using an app to split the bill, or playing otoko-gi janken, a game of rock-paper-scissors in which the winner pays. This app keeps a running record of how much each person has paid through otoko-gi janken."
+  },
+  "img-p17": {
+    "title": "Alque",
+    "description": "This is a game in which generative AI recreates an image and players try to identify the original image on which the recreation was based."
+  },
+  "img-p23": {
+    "title": "Letter App",
+    "description": "This app lets users share letters that reproduce the writer's handwriting and appear stroke by stroke, helping convey the feelings behind each letter more vividly."
+  },
+  "img-p1": {
+    "title": "New!Meiji: Meiji University News App",
+    "description": "New!Meiji is a news app that delivers the latest information from Meiji University. It is designed not only for current students, but also for alumni, incoming students, and anyone else who wants to stay up to date with the university."
+  },
+  "img-p2": {
+    "title": "PP-Undo (Undergraduate Thesis Version)",
+    "description": "PP-Undo (Pen Pressure Undo) is an application that uses pen pressure as an axis for undo operations in digital handwriting. By deliberately writing uncertain or low-confidence parts with lighter pressure, users can easily delete those parts together later."
+  },
+  "img-p3": {
+    "title": "Portfolio",
+    "description": "This is my previous portfolio. I created it partly as a way to practice with the newly released Vue.js 3."
+  },
+  "img-p4": {
+    "title": "Okidoki",
+    "description": "Okidoki helps prevent users from falling back asleep when they need to get up early or staying in bed for too long by keeping the alarm active until they complete a task. The app received an Encouragement Award at the 10th Student Smartphone App Contest."
+  },
+  "img-p5": {
+    "title": "Library Management System",
+    "description": "This system manages book lending at the Nakamura Laboratory, where I am a member. After logging in, users can scan barcodes to add books to the collection or check them out."
+  },
+  "img-p6": {
+    "title": "TRing",
+    "description": "TRing lets users tap a ring they are wearing on an NFC reader in a workroom, set the length of their break, and display that time on a screen. By setting the break themselves, knowing that others can see it, and repeatedly noticing the ring during the break, users are reminded of their motivation and can return to work with the same momentum they had before the break."
+  },
+  "img-p7": {
+    "title": "Anodoko",
+    "description": "Anodoko prevents the frustrating 'Where was that scene?' moment when readers want to revisit a favorite part of a manga. It identifies the volume and page they should open, making favorite scenes easy to find again."
+  },
+  "img-p8": {
+    "title": "ComiQA",
+    "description": "ComiQue helps readers remember the story so far when they start a newly released manga volume by reviewing previous events in quiz form. I presented this application at the 6th Comic Engineering workshop."
+  },
+  "img-p9": {
+    "title": "Choice Experiment System",
+    "description": "This is the experimental system I used for a research project titled 'The Effects of Color Factors in Three-Option Choices on Selection Behavior.'"
+  },
+  "img-p10": {
+    "title": "Weather Forecast LINE Bot",
+    "description": "This LINE bot reports the temperature and weather every morning. I created it especially to avoid forgetting an umbrella on days when rain is expected later in the afternoon."
+  },
+  "img-p11": {
+    "title": "Gmail Forwarding via LINE Notify",
+    "description": "Because I rarely checked Gmail and sometimes missed important messages, this system forwards Gmail notifications to LINE, an app I use frequently. It has helped me miss fewer important emails."
+  },
+  "img-p15": {
+    "title": "A Grudge Against Christmas",
+    "description": "This is a 3D program I created for a class assignment during the COVID-19 pandemic. It drops a huge mass of snow on a couple standing beside a Christmas tree. I made it on December 24..."
+  },
+  "img-p12": {
+    "title": "Rube Goldberg Machine",
+    "description": "This is a Rube Goldberg-style machine that I built with Processing for a university assignment. It implements a variety of physical motions, including rolling balls and falling dominoes."
+  },
+  "img-p13": {
+    "title": "COVID-19 Case Forecasting",
+    "description": "This Python program attempts to predict COVID-19 case counts before the figures are reported on television."
+  },
+  "img-p14": {
+    "title": "Puzzle & Dragons Clone",
+    "description": "This is a Puzzle & Dragons-style program that I worked hard to create when I still barely understood what functions were. Looking back, I think I put in an impressive amount of effort for my skill level at the time."
+  },
+  "img-p16": {
+    "title": "Hellish Choice Game (Working Title)",
+    "description": "This program makes the computer behave erratically unless the user praises Professor Miyashita, the chair of our department. Its hellish effects include turning the desktop background completely black, multiplying folders on the desktop, opening ten new windows, and even shutting down the computer."
+  }
+}

@@ -3,10 +3,14 @@
   import { defineProps, computed, ComputedRef } from 'vue';
   import ArticleImage from '../common/ArticleImage.vue';
   import Chip from '../common/Chip.vue';
+  import { useLocale } from '@/i18n';
+  import { localizeTag } from '@/i18n/content';
+
+  const { locale, copy } = useLocale();
   
-  export interface Props {
+  interface Props {
     isDialog: boolean;
-    closeDialog: void;
+    closeDialog: () => void;
     work: WorksType;
   }
   const props = defineProps<Props>();
@@ -14,7 +18,7 @@
   
   // 論文ページの表示
   const moveLink = (url?: string) => {
-    window.open(url, '_blank');
+    if (url) window.open(url, '_blank', 'noopener,noreferrer');
   }
   const createPath = (name: string) => {
     return new URL(`../../assets/${name}`, import.meta.url).href;
@@ -37,13 +41,18 @@
           density="compact"
         >
           <template v-slot:prepend>
-            <v-btn icon="mdi-close" @click="props.closeDialog" class="icon"></v-btn>
+            <v-btn
+              icon="mdi-close"
+              :aria-label="copy.common.close"
+              @click="props.closeDialog"
+              class="icon"
+            ></v-btn>
           </template>
-          <v-app-bar-title class="works">Works</v-app-bar-title>
+          <v-app-bar-title class="works">{{ copy.sections.publications }}</v-app-bar-title>
           <template v-slot:append>
-            <v-btn class="bg-black" @click="moveLink(work.url)">
+            <v-btn v-if="work.url" class="bg-black" @click="moveLink(work.url)">
               <v-icon icon="mdi-open-in-new" class="icon mr-1 text-white" />
-              <p class="font-weight-bold text-white">この論文へ</p>
+              <p class="font-weight-bold text-white">{{ copy.common.viewPaper }}</p>
             </v-btn>
           </template>
         </v-app-bar>
@@ -53,10 +62,11 @@
 
           <ArticleImage
             :path="createPath(`works/${work.image}.png`)"
+            :alt="work.title"
             class="mb-6"
           />
           
-          <p class="font-weight-bold text-h5 ml-4">Abstract</p>
+          <p class="font-weight-bold text-h5 ml-4">{{ copy.common.abstract }}</p>
           <p class="description">{{ work.description }}</p>
 
           <v-row class="authors mt-4 mx-4 mb-6">
@@ -68,7 +78,7 @@
             <Chip
               v-for="(tag, index) in work.tagList"
               :key="index"
-              :name="tag"
+              :name="localizeTag(tag, locale)"
             />
           </div>
         </v-main>

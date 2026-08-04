@@ -1,55 +1,61 @@
 <script lang="ts" setup>
-  import PageTitle from "@/components/common/PageTitle.vue";
+  import { computed } from 'vue';
+  import PageTitle from '@/components/common/PageTitle.vue';
+  import { useLocale } from '@/i18n';
+
+  const { copy } = useLocale();
+
   interface ElementType {
     icon: string;
     title: string;
     body: string;
   }
 
-  const elementList: ElementType[] = [
+  const elementList = computed<ElementType[]>(() => [
     {
       icon: "mdi-account",
-      title: "Name",
-      body: "関口 祐豊 （Yuto Sekiguhchi）",
+      title: copy.value.about.name,
+      body: copy.value.about.nameValue,
     },
     {
       icon: "mdi-cake",
-      title: "Birthday",
+      title: copy.value.about.birthday,
       body: "2000/11/26"
     },
     {
       icon: "mdi-lead-pencil",
-      title: "High School",
-      body: "千葉県立佐倉高等学校 卒業",
+      title: copy.value.about.highSchool,
+      body: copy.value.about.highSchoolValue,
     },
     {
       icon: "mdi-school",
-      title: "Affiliarion",
-      body: "明治大学 大学院 先端数理科学研究科 先端メディアサイエンス専攻 修士1年"
+      title: copy.value.about.affiliation,
+      body: copy.value.about.affiliationValue,
     },
     {
       icon: "mdi-laptop",
-      title: "Skills",
+      title: copy.value.about.skills,
       body: "React/Next.js, Vue/Nuxt.js, TypeScript, Python, Golang, Flutter, PHP, Ruby on Rails, GAS, Node.js, Processing, MATLAB, Julia, Spring Boot, Docker",
     }
-  ]
+  ])
 </script>
 
 <template>
   <div class="about-main mx-auto">
-    <PageTitle title="About" />
+    <PageTitle :title="copy.about.title" />
     <v-row class="container mt-6">
-      <v-col cols="6" class="left-container" align-self="center">
+      <v-col cols="12" sm="6" class="left-container" align-self="center">
         <v-img
           cover
           aspect-ratio="1"
           width="350"
           src="@/assets/me.png"
+          :alt="copy.about.nameValue"
           class="mx-auto me-img"
         />
       </v-col>
 
-      <v-col cols="6" class="right-container">
+      <v-col cols="12" sm="6" class="right-container">
         <div class="element mb-2" v-for="(el, index) in elementList" :key="index">
           <div class="element-header d-flex">
             <v-icon :icon=el.icon class="icon mr-1" />

@@ -8,8 +8,11 @@
   import { WorksType } from '@/settings/worksType';
   import { ref } from 'vue';
   import { useTagsStore } from '@/store/tags';
+  import { useLocale } from '@/i18n';
+  import { localizeTag } from '@/i18n/content';
 
   const worksStore = useTagsStore();
+  const { locale, copy } = useLocale();
   const isDialog = ref<boolean>(false);
   const num = ref<number>(0);
 
@@ -22,7 +25,7 @@
     isDialog.value = false;
   }
 
-  const worksList = ref<WorksType[]>(Works);
+  const worksList = ref<WorksType[]>(Works as WorksType[]);
 
   const childComponent = ref();
   // 記事のタグクリック時の動作
@@ -31,7 +34,7 @@
   }
   
   const showAllWorks = () => {
-    worksList.value = Works;
+    worksList.value = Works as WorksType[];
   }
 
   const showSearchWorks = (nowTag: string[]) => {
@@ -52,7 +55,7 @@
   />
   <div class="works-main mx-auto">
     <v-row class="works-main-header mx-auto">
-      <PageTitle title="Works" />
+      <PageTitle :title="copy.sections.publications" />
       <SearchBar
         ref="childComponent"
         :data="Works"
@@ -70,15 +73,16 @@
           <v-card-title class="text-center text-h5 font-weight-bold">{{ work.title }}</v-card-title>
         </v-card-item>
         <v-row class="mb-3">
-          <v-col cols="6" class="card-left">
+          <v-col cols="12" sm="6" class="card-left">
             <ArticleImage
               @click="openDialog(i)"
               style="cursor:pointer;"
               :path="createPath(`works/${work.image}.png`)"
+              :alt="work.title"
             />
           </v-col>
 
-          <v-col cols="6" class="card-right">
+          <v-col cols="12" sm="6" class="card-right">
             <p class="description">{{ work.description }}</p>
 
             <v-row class="open-dialog mt-0 justify-end">
@@ -88,7 +92,7 @@
                 @click="openDialog(i)"
               >
                 <v-icon icon="mdi-open-in-new" class="icon mr-1" />
-                <p>詳細へ</p>
+                <p>{{ copy.common.details }}</p>
               </v-btn>
             </v-row>
 
@@ -114,7 +118,7 @@
                 v-for="(tag, index) in work.tagList"
                 :key="index"
                 @click="clickTag(tag)"
-                :name="tag"
+                :name="localizeTag(tag, locale)"
               />
             </v-col>
           </v-col> 

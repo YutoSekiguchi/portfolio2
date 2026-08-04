@@ -3,10 +3,13 @@
   import { defineProps, computed, ComputedRef } from 'vue';
   import ArticleImage from '../common/ArticleImage.vue';
   import Chip from '../common/Chip.vue';
+  import { useLocale } from '@/i18n';
+
+  const { copy } = useLocale();
   
-  export interface Props {
+  interface Props {
     isDialog: boolean;
-    closeDialog: void;
+    closeDialog: () => void;
     product: ProductsType;
   }
   const props = defineProps<Props>();
@@ -33,9 +36,14 @@
           density="compact"
         >
           <template v-slot:prepend>
-            <v-btn icon="mdi-close" @click="props.closeDialog" class="icon"></v-btn>
+            <v-btn
+              icon="mdi-close"
+              :aria-label="copy.common.close"
+              @click="props.closeDialog"
+              class="icon"
+            ></v-btn>
           </template>
-          <v-app-bar-title class="products">Products</v-app-bar-title>
+          <v-app-bar-title class="products">{{ copy.sections.products }}</v-app-bar-title>
         </v-app-bar>
         
         <v-main class="dialog-card-main">
@@ -43,11 +51,12 @@
 
           <ArticleImage
             :path="createPath(`products/${product.image}.png`)"
+            :alt="product.title"
             :height="200"
             class="mb-6"
           />
           
-          <p class="font-weight-bold text-h5 ml-4">概要</p>
+          <p class="font-weight-bold text-h5 ml-4">{{ copy.common.abstract }}</p>
           <p class="description">{{ product.description }}</p>
 
           <template v-if="product.urlList">
@@ -57,7 +66,7 @@
               class="ml-0 pl-4 mt-4"
             >
               <v-icon icon="mdi-link" class="icon mr-1" />
-              <a :href="`${url}`" target="_blank">{{ url }}</a>
+              <a :href="`${url}`" target="_blank" rel="noopener noreferrer">{{ url }}</a>
             </v-row>
           </template>
           
