@@ -14,18 +14,7 @@
     showSearch: (nowTag: string[]) => void;
   }
   const props = defineProps<Props>();
-  // 配列の要素の順番を入れ替える関数
-  const shuffleArray = <T,>(array: T[]) => {
-    const cloneArray = [...array]
-    for (let i = cloneArray.length - 1; i >= 0; i--) {
-      let rand = Math.floor(Math.random() * (i + 1))
-      let tmpStorage = cloneArray[i]
-      cloneArray[i] = cloneArray[rand]
-      cloneArray[rand] = tmpStorage
-    }
-    return cloneArray
-  }
-  // 全てのタグのリストをランダムな順で保持
+  // Keep the filter order stable so the interface does not jump between renders.
   const allTags = computed(() => {
     const res: string[] = [];
     props.data.map((el) => {
@@ -33,7 +22,7 @@
         if (!res.includes(tag)) { res.push(tag); }
       })
     })
-    return shuffleArray(res);
+    return res.sort((a, b) => a.localeCompare(b, locale.value));
   })
 
   const allTagList = computed(() =>
@@ -78,6 +67,7 @@
     >
       <template v-slot:chip="data">
         <Chip
+          v-bind="data.props"
           :name="data.item.title"
           cl="mr-2 mb-1"
         />

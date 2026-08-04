@@ -8,5 +8,5 @@
 </script>
 
 <template>
-  <p class="page-title">{{ props.title }}</p>
+  <h1 class="page-title">{{ props.title }}</h1>
 </template>

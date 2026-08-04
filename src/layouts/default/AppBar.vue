@@ -38,7 +38,7 @@
     <v-col class="app-bar-elements mx-auto">
       <v-row class="items-center bar" justify="space-between" no-gutters>
         <button class="brand" type="button" @click="router.push('/')">
-          <h1 class="title">{{ title }}</h1>
+          <span class="title">{{ title }}</span>
         </button>
 
         <div class="header-actions">
@@ -124,6 +124,13 @@
   border-radius: 6px;
   cursor: pointer;
   padding: 2px 4px;
+}
+
+.title {
+  color: #212121;
+  display: block;
+  font-weight: bold;
+  line-height: 1.2;
 }
 
 .brand:focus-visible,

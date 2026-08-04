@@ -1,5 +1,5 @@
 <template>
-  <v-main>
+  <v-main id="main-content" tabindex="-1">
     <router-view />
     <Footer />
   </v-main>

@@ -147,8 +147,8 @@ const messages = {
       '2022 Encouragement Award, 10th Student Smartphone App Contest',
       '2023 Student Encouragement Award, IPSJ SIG-HCI',
       '2025 Special Alumni Award, Meiji University Alumni Association',
-      '2025 Selected for the IPA Exploratory IT Human Resources Project (MITOU Program)',
-      '2026 Certified as a Super Creator in the 2025 IPA MITOU Program',
+      '2025 Selected for the Innovation Platform Agency (IPA) Exploratory IT Human Resources Project (MITOU Program)',
+      '2026 Certified as a Super Creator in the 2025 Innovation Platform Agency (IPA) MITOU Program',
       '2026 Awarded a Meiji University Early-Career Research Grant',
     ],
     education: [

@@ -27,7 +27,7 @@ $card_margin: 20px 10px;
       max-width: $card_width;
       height: $card_width*1.25;
       margin: $card_margin;
-      .card-title { 
+      .card-title {
         font-size: 1.3rem;
         font-weight: bold;
         @include common.overflow_text(2);

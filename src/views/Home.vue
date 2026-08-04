@@ -1,196 +1,217 @@
 <script lang="ts" setup>
-import { ref, computed } from "vue";
-import Works from "../settings/works.json";
-import Products from "../settings/products.json";
-import { WorksType } from "@/settings/worksType";
-import { ProductsType } from "@/settings/productsType";
-import Experiences from "@/settings/experience.json";
-import { ExperienceType } from "@/settings/experienceType";
-import PaperIcon from "@/components/icon/Paper.vue";
-import SlideIcon from "@/components/icon/Slide.vue";
-import CodeIcon from "@/components/icon/Code.vue";
-import LinkIcon from "@/components/icon/Link.vue";
-import { useLocale } from '@/i18n';
+import { computed, nextTick, ref, watch } from 'vue'
+import { useLocale } from '@/i18n'
 import {
   localizeAward,
   localizeExperiences,
   localizeProducts,
-} from '@/i18n/content';
+  localizeTag,
+} from '@/i18n/content'
+import Works from '@/settings/works.json'
+import Products from '@/settings/products.json'
+import Experiences from '@/settings/experience.json'
+import type { WorksType } from '@/settings/worksType'
+import type { ProductsType } from '@/settings/productsType'
+import type { ExperienceType } from '@/settings/experienceType'
+import PaperIcon from '@/components/icon/Paper.vue'
+import SlideIcon from '@/components/icon/Slide.vue'
+import CodeIcon from '@/components/icon/Code.vue'
+import LinkIcon from '@/components/icon/Link.vue'
 
-const { locale, copy } = useLocale();
+const { locale, copy } = useLocale()
 
-const worksList = ref<WorksType[]>(Works as WorksType[]);
+const worksList = ref<WorksType[]>(Works as WorksType[])
 const productsList = computed(() =>
-  localizeProducts(Products as ProductsType[], locale.value)
-);
+  localizeProducts(Products as ProductsType[], locale.value),
+)
 const experienceList = computed(() =>
-  localizeExperiences(Experiences as ExperienceType[], locale.value)
-);
+  localizeExperiences(Experiences as ExperienceType[], locale.value),
+)
 
 type DialogSelection =
   | { kind: 'work'; image?: string; date?: string }
-  | { kind: 'product'; image: string };
+  | { kind: 'product'; image: string }
 
-const dialogSelection = ref<DialogSelection | null>(null);
-const dialog = ref<boolean>(false);
+const dialogSelection = ref<DialogSelection | null>(null)
+const dialog = ref(false)
+const dialogTrigger = ref<HTMLElement | null>(null)
 
-const dialogContent = computed(() => {
-  const selection = dialogSelection.value;
-  if (!selection) return undefined;
+const dialogContent = computed<WorksType | ProductsType | undefined>(() => {
+  const selection = dialogSelection.value
+  if (!selection) return undefined
+
   if (selection.kind === 'work') {
     return worksList.value.find(
-      (work) => work.image === selection.image && work.date === selection.date
-    );
+      (work) => work.image === selection.image && work.date === selection.date,
+    )
   }
-  return productsList.value.find(
-    (product) => product.image === selection.image
-  );
-});
+
+  return productsList.value.find((product) => product.image === selection.image)
+})
+
+const createPath = (name: string) => new URL(`../assets/${name}`, import.meta.url).href
+
+const dialogAsset = computed(() => {
+  const selection = dialogSelection.value
+  const content = dialogContent.value
+  if (!selection || !content?.image) return undefined
+  const directory = selection.kind === 'work' ? 'works' : 'products'
+  return createPath(`${directory}/${content.image}.png`)
+})
+
+const rememberDialogTrigger = () => {
+  dialogTrigger.value = document.activeElement instanceof HTMLElement
+    ? document.activeElement
+    : null
+}
 
 const openWorkDialog = (work: WorksType) => {
-  dialogSelection.value = { kind: 'work', image: work.image, date: work.date };
-  dialog.value = true;
-};
+  rememberDialogTrigger()
+  dialogSelection.value = { kind: 'work', image: work.image, date: work.date }
+  dialog.value = true
+}
 
 const openProductDialog = (product: ProductsType) => {
-  dialogSelection.value = { kind: 'product', image: product.image };
-  dialog.value = true;
-};
+  rememberDialogTrigger()
+  dialogSelection.value = { kind: 'product', image: product.image }
+  dialog.value = true
+}
 
-const dialogImage = computed(() =>
-  dialogSelection.value?.kind === 'work' ? dialogSelection.value.image : undefined
-);
+watch(dialog, (isOpen) => {
+  if (!isOpen) {
+    nextTick(() => dialogTrigger.value?.focus())
+  }
+})
 
-const createPath = (name: string) => {
-  return new URL(`../assets/${name}`, import.meta.url).href;
-};
-
-// Define main categories in the desired order.
 const mainCategories = [
-  "Journal",
-  "International Conference",
-  "Domestic Conference",
-];
+  'Journal',
+  'International Conference',
+  'Domestic Conference',
+] as const
 
 const groupedWorksOrdered = computed(() => {
   const groups: Record<string, Record<string, WorksType[]>> = {
     Journal: { Regular: [] },
-    "International Conference": { Regular: [], "Demonstration/Poster": [] },
-    "Domestic Conference": {
-      "Peer-Reviewed Regular": [],
-      "Peer-Reviewed Demonstration/Poster": [],
-      "Non-Peer-Reviewed Regular": [],
-      "Non-Peer-Reviewed Demonstration/Poster": [],
+    'International Conference': { Regular: [], 'Demonstration/Poster': [] },
+    'Domestic Conference': {
+      'Peer-Reviewed Regular': [],
+      'Peer-Reviewed Demonstration/Poster': [],
+      'Non-Peer-Reviewed Regular': [],
+      'Non-Peer-Reviewed Demonstration/Poster': [],
     },
-  };
+  }
 
   worksList.value.forEach((work) => {
-    const pubType = work.publication_type || "";
-    let mainGroup = "";
+    const publicationType = work.publication_type || ''
+    let mainGroup = 'Domestic Conference'
 
-    if (pubType.includes("Journal")) {
-      mainGroup = "Journal";
-    } else if (pubType.includes("International")) {
-      mainGroup = "International Conference";
-    } else {
-      mainGroup = "Domestic Conference";
+    if (publicationType.includes('Journal')) {
+      mainGroup = 'Journal'
+    } else if (publicationType.includes('International')) {
+      mainGroup = 'International Conference'
     }
 
-    if (mainGroup === "International Conference") {
-      const subGroup = pubType.includes("Demonstration/Poster")
-        ? "Demonstration/Poster"
-        : "Regular";
-      groups[mainGroup][subGroup].push(work);
-    } else if (mainGroup === "Domestic Conference") {
-      const peerReviewed = work.review ? "Peer-Reviewed" : "Non-Peer-Reviewed";
-      const subGroup = pubType.includes("Demonstration/Poster")
-        ? "Demonstration/Poster"
-        : "Regular";
-      const category = `${peerReviewed} ${subGroup}`;
-      groups[mainGroup][category].push(work);
-    } else {
-      groups[mainGroup]["Regular"].push(work);
+    if (mainGroup === 'International Conference') {
+      const subGroup = publicationType.includes('Demonstration/Poster')
+        ? 'Demonstration/Poster'
+        : 'Regular'
+      groups[mainGroup][subGroup].push(work)
+      return
     }
-  });
 
-  return groups;
-});
+    if (mainGroup === 'Domestic Conference') {
+      const review = work.review ? 'Peer-Reviewed' : 'Non-Peer-Reviewed'
+      const format = publicationType.includes('Demonstration/Poster')
+        ? 'Demonstration/Poster'
+        : 'Regular'
+      groups[mainGroup][`${review} ${format}`].push(work)
+      return
+    }
 
-const filteredGroupedWorks = computed(() => {
-  return Object.fromEntries(
-    Object.entries(groupedWorksOrdered.value).filter(([, subGroups]) =>
-      Object.values(subGroups).some((arr) => arr.length > 0)
-    )
-  );
-});
+    groups[mainGroup].Regular.push(work)
+  })
 
-const filteredSubGroups = computed(() => (category: string) => {
-  return Object.fromEntries(
-    Object.entries(groupedWorksOrdered.value[category]).filter(
-      ([, arr]) => arr.length > 0
-    )
-  );
-});
+  return groups
+})
+
+const filteredGroupedWorks = computed(() => Object.fromEntries(
+  Object.entries(groupedWorksOrdered.value).filter(([, subGroups]) =>
+    Object.values(subGroups).some((works) => works.length > 0),
+  ),
+))
+
+const filteredSubGroups = (category: string) => Object.fromEntries(
+  Object.entries(groupedWorksOrdered.value[category]).filter(([, works]) => works.length > 0),
+)
 
 const getCategoryLabel = (category: string) => {
   const labels: Record<string, string> = {
     Journal: copy.value.publicationCategories.journal,
     'International Conference': copy.value.publicationCategories.internationalConference,
     'Domestic Conference': copy.value.publicationCategories.domesticConference,
-  };
-  return labels[category] || category;
-};
+  }
+  return labels[category] || category
+}
 
 const getSubGroupLabel = (subGroup: string) => {
   if (subGroup === 'Demonstration/Poster') {
-    return copy.value.publicationCategories.demonstrationPoster;
+    return copy.value.publicationCategories.demonstrationPoster
   }
 
   const reviewLabel = subGroup.startsWith('Non-Peer-Reviewed')
     ? copy.value.publicationCategories.nonPeerReviewed
-    : copy.value.publicationCategories.peerReviewed;
-  const typeLabel = subGroup.includes('Demonstration/Poster')
+    : copy.value.publicationCategories.peerReviewed
+  const formatLabel = subGroup.includes('Demonstration/Poster')
     ? copy.value.publicationCategories.demonstrationPoster
-    : '';
-  return [reviewLabel, typeLabel].filter(Boolean).join(' · ');
-};
+    : ''
+  return [reviewLabel, formatLabel].filter(Boolean).join(' · ')
+}
 
 const formatPeriod = (start?: string, end?: string) => {
-  const normalize = (s?: string) =>
-    s ? s.replaceAll("/", "-").replaceAll(".", "-") : undefined;
-  const toYm = (s?: string) => {
-    if (!s) return undefined;
-    const parts = s.split("-");
-    if (parts.length === 1) return parts[0];
-    if (parts.length >= 2) return `${parts[0]}.${parts[1]}`;
-    return s;
-  };
-  const s = toYm(normalize(start));
-  const isPresent = end && end.toLowerCase() === "present";
-  const e = isPresent ? copy.value.common.present : toYm(normalize(end));
-  return [s, e].filter(Boolean).join(" – ");
-};
+  const normalize = (value?: string) => value?.replaceAll('/', '-').replaceAll('.', '-')
+  const toYearMonth = (value?: string) => {
+    if (!value) return undefined
+    const parts = value.split('-')
+    return parts.length >= 2 ? `${parts[0]}.${parts[1]}` : parts[0]
+  }
+  const startValue = toYearMonth(normalize(start))
+  const endValue = end?.toLowerCase() === 'present'
+    ? copy.value.common.present
+    : toYearMonth(normalize(end))
+  return [startValue, endValue].filter(Boolean).join(' – ')
+}
 
-const formatProductYear = (year: string) =>
-  locale.value === 'ja' ? `${year}${copy.value.common.yearSuffix}` : year;
+const formatProductYear = (year: string) => (
+  locale.value === 'ja' ? `${year}${copy.value.common.yearSuffix}` : year
+)
+
+const contentLanguage = (value?: string) => (
+  /[\u3040-\u30ff\u3400-\u9fff]/.test(value || '') ? 'ja' : 'en'
+)
 </script>
 
 <template>
-  <v-dialog v-if="dialog" v-model="dialog" width="500">
-    <v-card>
+  <v-dialog
+    v-if="dialog"
+    v-model="dialog"
+    width="500"
+    @after-leave="dialogSelection = null"
+  >
+    <v-card class="detail-dialog">
       <v-card-title class="headline">{{ copy.common.abstract }}</v-card-title>
       <v-img
-          class="mx-auto"
-          v-if="dialogImage"
-          width="600"
-          aspect-ratio="1.7"
-          :src="createPath(`works/${dialogImage}.png`)"
-          :alt="dialogContent?.title || ''"
-        />
+        v-if="dialogAsset"
+        class="dialog-image mx-auto"
+        :class="{ 'dialog-image--product': dialogSelection?.kind === 'product' }"
+        width="600"
+        aspect-ratio="1.7"
+        :src="dialogAsset"
+        :alt="dialogContent?.title || ''"
+      />
       <p class="map-text px-4">{{ dialogContent?.description }}</p>
       <v-card-actions>
-        <v-spacer></v-spacer>
-        <v-btn color="black darken-1" text @click="dialog = false">
+        <v-spacer />
+        <v-btn color="black" variant="text" @click="dialog = false">
           {{ copy.common.close }}
         </v-btn>
       </v-card-actions>
@@ -198,14 +219,23 @@ const formatProductYear = (year: string) =>
   </v-dialog>
 
   <div class="top mb-6">
-    <v-img
-      aspect-ratio="1"
-      width="300"
-      src="@/assets/me.jpg"
-      :alt="copy.about.nameValue"
-      class="me-img"
-    />
-    <v-col md="4" cols="12" sm="8">
+    <div class="profile-image-card">
+      <div class="profile-image-frame">
+        <v-img
+          class="me-img"
+          cover
+          position="center"
+          src="@/assets/me.jpg"
+          :alt="copy.about.nameValue"
+        />
+      </div>
+      <div class="profile-image-badge">
+        <span>Meiji University</span>
+        <strong>HCI Researcher</strong>
+        <small>Ph.D. Student · 2nd Year</small>
+      </div>
+    </div>
+    <v-col class="profile-copy" md="4" cols="12" sm="8">
       <h1 class="el-title">{{ copy.sections.profile }}</h1>
       <p class="map-text">
         {{ copy.profile.affiliation }}<br />
@@ -215,9 +245,9 @@ const formatProductYear = (year: string) =>
           rel="noopener noreferrer"
           target="_blank"
         >{{ copy.profile.laboratory }}</a><br /><br />
-        <span style="font-weight: bold;">{{ copy.profile.keywords }}</span><br />
+        <strong>{{ copy.profile.keywords }}</strong><br />
         {{ copy.profile.keywordList }}<br /><br />
-        <span style="font-weight: bold;">{{ copy.profile.memberships }}</span><br />
+        <strong>{{ copy.profile.memberships }}</strong><br />
         <template v-for="membership in copy.profile.membershipList" :key="membership">
           • {{ membership }}<br />
         </template>
@@ -227,86 +257,82 @@ const formatProductYear = (year: string) =>
 
   <v-col class="mx-auto" xl="6" md="8" cols="12">
     <h5 class="el-title">{{ copy.sections.certificationsAndAwards }}</h5>
-    <ul style="padding-left: 1rem; line-height: 1.3rem;">
+    <ul class="simple-list awards-list">
       <li v-for="award in copy.awards" :key="award">
-        <p class="map-text" style="font-size: 0.6rem;">{{ award }}</p>
+        <p class="map-text award-text">{{ award }}</p>
       </li>
     </ul>
   </v-col>
 
-  <!-- Publication Section -->
   <v-col class="mx-auto" xl="6" md="8" cols="12">
     <h5 class="el-title">{{ copy.sections.publications }}</h5>
     <div v-for="category in mainCategories" :key="category" class="mb-8">
       <template v-if="category in filteredGroupedWorks">
-        <h4 style="border-left: 5px solid #999; padding-left: 8px;">
-          {{ getCategoryLabel(category) }}
-        </h4>
+        <h4 class="publication-category">{{ getCategoryLabel(category) }}</h4>
         <div
           v-for="(subGroup, subGroupName) in filteredSubGroups(category)"
           :key="subGroupName"
         >
-          <h5 v-if="subGroupName !== 'Regular'">
+          <h5 v-if="subGroupName !== 'Regular'" class="publication-subgroup">
             {{ getSubGroupLabel(subGroupName.toString()) }}
           </h5>
           <div
             v-for="(work, index) in subGroup"
-            :key="`${category}-${subGroupName}-${index}`"
+            :key="`${category}-${subGroupName}-${work.image}-${work.date}`"
             class="pub-item"
           >
             <div class="pub-main">
               <button
                 type="button"
                 class="pub-title pub-title-button"
+                :lang="contentLanguage(work.citation)"
+                :aria-label="`${copy.common.details}: ${work.title}`"
+                aria-haspopup="dialog"
                 @click="openWorkDialog(work)"
               >
                 {{ index + 1 }}.&nbsp;{{ work.citation }}
-                <span class="pub-award" v-if="work.award !== ''">
+                <span v-if="work.award" class="pub-award">
                   【{{ localizeAward(work.award, locale) }}】
                 </span>
               </button>
             </div>
             <div class="pub-icons">
-              <span v-if="work.paper">
-                <a
-                  :href="work.paper"
-                  :aria-label="`${copy.common.openPaper}: ${work.title}`"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <PaperIcon class="pub-icon" aria-hidden="true" />
-                </a>
-              </span>
-              <span v-if="work.slide">
-                <a
-                  :href="work.slide"
-                  :aria-label="`${copy.common.openSlides}: ${work.title}`"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <SlideIcon class="pub-icon" aria-hidden="true" />
-                </a>
-              </span>
-              <span v-if="work.code">
-                <a
-                  :href="work.code"
-                  :aria-label="`${copy.common.openCode}: ${work.title}`"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <CodeIcon class="pub-icon" aria-hidden="true" />
-                </a>
-              </span>
-              <span v-if="work.system">
-                <a
-                  :href="work.system"
-                  :aria-label="`${copy.common.openSystem}: ${work.title}`"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <LinkIcon class="pub-icon" aria-hidden="true" />
-                </a>
-              </span>
+              <a
+                v-if="work.paper"
+                :href="work.paper"
+                :aria-label="`${copy.common.openPaper}: ${work.title}`"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <PaperIcon class="pub-icon" aria-hidden="true" />
+              </a>
+              <a
+                v-if="work.slide"
+                :href="work.slide"
+                :aria-label="`${copy.common.openSlides}: ${work.title}`"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <SlideIcon class="pub-icon" aria-hidden="true" />
+              </a>
+              <a
+                v-if="work.code"
+                :href="work.code"
+                :aria-label="`${copy.common.openCode}: ${work.title}`"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <CodeIcon class="pub-icon" aria-hidden="true" />
+              </a>
+              <a
+                v-if="work.system"
+                :href="work.system"
+                :aria-label="`${copy.common.openSystem}: ${work.title}`"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <LinkIcon class="pub-icon" aria-hidden="true" />
+              </a>
             </div>
           </div>
         </div>
@@ -314,18 +340,16 @@ const formatProductYear = (year: string) =>
     </div>
   </v-col>
 
-  
-
   <v-col class="mx-auto" xl="6" md="8" cols="12">
     <h5 class="el-title">{{ copy.sections.products }}</h5>
     <div class="product-slider">
       <div
+        v-for="product in productsList"
+        :key="product.image"
         class="product-card"
-        v-for="(product, index) in productsList"
-        :key="index"
       >
         <v-img
-          class="mx-auto"
+          class="product-image mx-auto"
           width="250"
           aspect-ratio="1.7"
           :src="createPath(`products/${product.image}.png`)"
@@ -334,24 +358,34 @@ const formatProductYear = (year: string) =>
         <button
           type="button"
           class="product-title product-title-button"
+          :aria-label="`${copy.common.details}: ${product.title}`"
+          aria-haspopup="dialog"
           @click="openProductDialog(product)"
         >
           {{ product.title }}
         </button>
-        <p class="work-authors map-text">{{ product.tagList.join(", ") }}</p>
+        <p class="work-authors map-text">
+          {{ product.tagList.map((tag) => localizeTag(tag, locale)).join(', ') }}
+        </p>
         <p class="work-conference map-text">{{ formatProductYear(product.grade) }}</p>
-        <div class="flex">
+        <div class="flex product-links">
           <div v-if="product.code" class="flex mr-2">
-            <CodeIcon />
-            <a :href="product.code" target="_blank" rel="noopener noreferrer" class="work-url">
-              {{ copy.common.code }}
-            </a>
+            <CodeIcon aria-hidden="true" />
+            <a
+              :href="product.code"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="work-url"
+            >{{ copy.common.code }}</a>
           </div>
-          <div v-if="product.urlList" class="flex mr-2">
-            <LinkIcon />
-            <a :href="product.urlList[0]" target="_blank" rel="noopener noreferrer" class="work-url">
-              {{ copy.common.link }}
-            </a>
+          <div v-if="product.urlList?.length" class="flex mr-2">
+            <LinkIcon aria-hidden="true" />
+            <a
+              :href="product.urlList[0]"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="work-url"
+            >{{ copy.common.link }}</a>
           </div>
         </div>
       </div>
@@ -360,30 +394,44 @@ const formatProductYear = (year: string) =>
 
   <v-col class="mx-auto" xl="6" md="8" cols="12">
     <h5 class="el-title">{{ copy.sections.experience }}</h5>
-    <div v-for="(exp, idx) in experienceList" :key="idx" class="exp-item">
+    <div
+      v-for="experience in experienceList"
+      :key="`${experience.title}-${experience.startDate}`"
+      class="exp-item"
+    >
       <div class="exp-main">
         <span class="exp-title">
-          <template v-if="exp.url">
-            <a :href="exp.url" target="_blank" rel="noopener noreferrer" class="link">{{ exp.title }}</a>
-          </template>
-          <template v-else>{{ exp.title }}</template>
+          <a
+            v-if="experience.url"
+            :href="experience.url"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="link"
+          >{{ experience.title }}</a>
+          <template v-else>{{ experience.title }}</template>
         </span>
-        <span v-if="exp.organization" class="exp-org"> — {{ exp.organization }}</span>
+        <span v-if="experience.organization" class="exp-org">
+          — {{ experience.organization }}
+        </span>
       </div>
       <div class="exp-meta map-text">
-        <span v-if="exp.startDate || exp.endDate">{{ formatPeriod(exp.startDate, exp.endDate) }}</span>
-        <span v-if="exp.location"> · {{ exp.location }}</span>
+        <span v-if="experience.startDate || experience.endDate">
+          {{ formatPeriod(experience.startDate, experience.endDate) }}
+        </span>
+        <span v-if="experience.location"> · {{ experience.location }}</span>
       </div>
-      <p v-if="exp.description" class="map-text exp-desc">{{ exp.description }}</p>
-      <div v-if="exp.tags && exp.tags.length" class="exp-tags">
-        <span class="exp-tag" v-for="(t, i) in exp.tags" :key="i">{{ t }}</span>
+      <p v-if="experience.description" class="map-text exp-desc">
+        {{ experience.description }}
+      </p>
+      <div v-if="experience.tags?.length" class="exp-tags">
+        <span v-for="tag in experience.tags" :key="tag" class="exp-tag">{{ tag }}</span>
       </div>
     </div>
   </v-col>
 
   <v-col class="mx-auto" xl="6" md="8" cols="12">
     <h5 class="el-title">{{ copy.sections.academicBackground }}</h5>
-    <ul style="padding-left: 1rem;">
+    <ul class="simple-list">
       <li v-for="education in copy.education" :key="education">
         <p class="map-text">{{ education }}</p>
       </li>
@@ -405,77 +453,163 @@ const formatProductYear = (year: string) =>
 </template>
 
 <style scoped>
-/* Existing styles */
-.me-img {
-  max-width: 280px;
-  border-radius: 5%;
-  margin-top: 12px;
+.top {
+  align-items: center;
+  display: grid;
+  gap: 34px;
+  grid-template-columns: minmax(230px, 290px) minmax(0, 380px);
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 760px;
+  padding-top: 24px;
+}
+
+.profile-image-card {
+  isolation: isolate;
+  min-width: 0;
+  padding: 0 0 28px 12px;
+  position: relative;
+  width: 100%;
+}
+
+.profile-image-frame {
+  aspect-ratio: 4 / 5;
+  background: linear-gradient(145deg, #10213d, #3157e5 68%, #00a9a5);
+  border-radius: 30px;
+  box-shadow: 0 22px 54px rgba(16, 33, 61, 0.2);
+  padding: 6px;
+  position: relative;
+  transform: rotate(1.35deg);
+  width: 100%;
+}
+
+.profile-image-frame::before {
+  border: 1px solid rgba(49, 87, 229, 0.32);
+  border-radius: inherit;
+  content: '';
+  inset: 16px -13px -13px 16px;
+  pointer-events: none;
+  position: absolute;
+  z-index: -1;
 }
 
 .me-img {
-  @media (max-width: 600px) {
-    margin: auto;
-  }
+  border-radius: 25px;
+  height: 100%;
+  overflow: hidden;
+  transform: rotate(-1.35deg) scale(1.02);
+  width: 100%;
 }
-.top {
-  @media (min-width: 600px) {
-    margin-left: 60px;
-    margin-right: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+
+.profile-image-badge {
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  border-radius: 16px;
+  bottom: 0;
+  box-shadow: 0 12px 30px rgba(16, 33, 61, 0.16);
+  display: grid;
+  left: 0;
+  max-width: calc(100% - 28px);
+  padding: 11px 14px;
+  position: absolute;
+  z-index: 2;
 }
+
+.profile-image-badge span,
+.profile-image-badge small {
+  color: #697487;
+  font-size: 0.56rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  line-height: 1.35;
+}
+
+.profile-image-badge strong {
+  color: #10213d;
+  font-size: 0.86rem;
+  line-height: 1.45;
+}
+
+.profile-copy {
+  margin-left: 0;
+  max-width: none;
+  width: 100%;
+}
+
 .el-title {
   font-size: 1.2rem;
   font-weight: bold;
   margin-bottom: 5px;
 }
+
 .map-text {
   font-size: 0.8rem;
-  line-height: 1.2em;
-  word-break: break-word;
+  line-height: 1.3em;
   white-space: pre-wrap;
-  @media (min-width: 600px) {
-    line-height: 1.3em;
-  }
-}
-.link {
-  text-decoration: none;
-  color: #00bfff;
-  border-bottom: 1px solid #00bfff;
-}
-.link:hover {
-  color: #0088aa;
-  border-bottom: 1px solid #0088aa;
+  word-break: break-word;
 }
 
-/* New one-line publication styles */
+.link {
+  border-bottom: 1px solid #00bfff;
+  color: #00bfff;
+  text-decoration: none;
+}
+
+.link:hover {
+  border-bottom-color: #0088aa;
+  color: #0088aa;
+}
+
+.simple-list {
+  padding-left: 1rem;
+}
+
+.awards-list {
+  line-height: 1.3rem;
+}
+
+.award-text {
+  font-size: 0.6rem;
+}
+
+.publication-category {
+  border-left: 5px solid #999;
+  padding-left: 8px;
+}
+
+.publication-subgroup {
+  margin-top: 12px;
+}
+
 .pub-item {
+  align-items: center;
   display: flex;
   justify-content: space-between;
-  align-items: center;
   padding: 8px 0;
-  /* border-bottom: 1px solid #e0e0e0; */
 }
+
 .pub-main {
-  display: flex;
   align-items: center;
+  display: flex;
   flex-wrap: wrap;
+  min-width: 0;
 }
-.pub-index {
-  color: #555;
-  font-size: 0.6rem;
-  margin-right: 8px;
-}
+
 .pub-title {
-  cursor: pointer;
   color: #333;
+  cursor: pointer;
   font-size: 0.6rem;
-  /* font-weight: bold; */
+  line-height: 1.45;
   margin-right: 8px;
-  /* text-decoration: underline; */
 }
+
+.pub-title:hover {
+  color: #888;
+}
+
 .pub-title-button,
 .product-title-button {
   appearance: none;
@@ -485,57 +619,48 @@ const formatProductYear = (year: string) =>
   padding: 0;
   text-align: left;
 }
+
 .pub-title-button:focus-visible,
-.product-title-button:focus-visible {
-  outline: 2px solid #555;
+.product-title-button:focus-visible,
+.pub-icons a:focus-visible,
+.work-url:focus-visible,
+.link:focus-visible {
+  outline: 2px solid #31577f;
   outline-offset: 2px;
 }
-.pub-title:hover {
-  color: #888;
-}
-.pub-detail {
-  color: #555;
-  font-size: 0.5rem;
-}
+
 .pub-icons {
-  display: flex;
   align-items: center;
+  display: flex;
+  flex: 0 0 auto;
 }
+
+.pub-icons a {
+  color: inherit;
+  display: inline-flex;
+}
+
 .pub-icon {
-  margin-left: 8px;
   color: #757575;
   cursor: pointer;
+  margin-left: 8px;
 }
+
 .pub-icon:hover {
   color: #424242;
 }
-.product-title {
-  color: #333;
-  cursor: pointer;
-  display: block;
-  font-size: 0.9rem;
-  font-weight: bold;
-}
-.product-title:hover {
-  color: #aaa;
-}
-.work-url {
-  color: #555;
-  font-size: 0.6rem;
-}
-.work-url:hover {
-  color: #aaa;
-}
+
 .pub-award {
   color: #222;
   font-size: 0.7rem;
   font-weight: bold;
   margin-left: 2px;
 }
+
 .product-slider {
   display: flex;
-  overflow-x: auto;
   gap: 24px;
+  overflow-x: auto;
   padding: 16px 0;
   scroll-snap-type: x mandatory;
 }
@@ -550,53 +675,138 @@ const formatProductYear = (year: string) =>
 }
 
 .product-card {
-  flex: 0 0 45%;
-  scroll-snap-align: start;
   background: #fff;
   border-radius: 8px;
-  padding: 12px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  flex: 0 0 45%;
+  padding: 12px;
+  scroll-snap-align: start;
 }
+
+.product-image {
+  max-width: 100%;
+}
+
+.product-title {
+  color: #333;
+  cursor: pointer;
+  display: block;
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+.product-title:hover {
+  color: #aaa;
+}
+
+.product-links {
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.work-url {
+  color: #555;
+  font-size: 0.6rem;
+}
+
+.work-url:hover {
+  color: #aaa;
+}
+
 .exp-item {
-  padding: 8px 0;
   border-bottom: 1px solid #f0f0f0;
+  padding: 8px 0;
 }
+
 .exp-main {
-  display: flex;
   align-items: baseline;
+  display: flex;
   flex-wrap: wrap;
   gap: 4px;
 }
+
 .exp-title {
+  color: #444;
   font-size: 0.8rem;
   font-weight: normal;
-  color: #444;
 }
+
 .exp-org {
   color: #666;
   font-size: 0.75rem;
   font-weight: normal;
 }
+
 .exp-meta {
   color: #777;
   font-size: 0.6rem;
 }
+
 .exp-desc {
-  margin-top: 4px;
-  font-size: 0.75rem;
   color: #555;
-}
-.exp-tags {
+  font-size: 0.75rem;
   margin-top: 4px;
+}
+
+.exp-tags {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
+  margin-top: 4px;
 }
+
 .exp-tag {
-  font-size: 0.55rem;
-  color: #666;
   background: #f7f7f7;
-  padding: 2px 6px;
   border-radius: 999px;
+  color: #666;
+  font-size: 0.55rem;
+  padding: 2px 6px;
 }
+
+.detail-dialog {
+  border-radius: 8px;
+}
+
+.dialog-image--product :deep(.v-img__img) {
+  object-fit: contain;
+}
+
+@media (max-width: 899px) {
+  .top {
+    display: block;
+    margin-left: 0;
+    margin-right: 0;
+    padding: 20px 12px 0;
+  }
+
+  .profile-image-card {
+    margin: 0 auto 18px;
+    max-width: 300px;
+    width: min(80vw, 300px);
+  }
+
+  .profile-copy {
+    flex-basis: auto;
+    margin-left: 0;
+    max-width: none;
+    padding-left: 4px;
+    padding-right: 4px;
+    width: 100%;
+  }
+}
+
+@media (max-width: 599px) {
+  .map-text {
+    line-height: 1.35em;
+  }
+
+  .pub-item {
+    align-items: flex-start;
+  }
+
+  .product-card {
+    flex-basis: 82%;
+  }
+}
+
 </style>
